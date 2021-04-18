@@ -14,7 +14,7 @@
         <div class="input-group-prepend">
              <span class="input-group-text">%</span> 
             </div>            
-     <input type="number" name="tax" id="tax" class="form-control" value=13 aria-describedby="helpId"  placeholder="" required>          
+     <input type="number" name="tax" id="tax" class="form-control" value="0" aria-describedby="helpId" required>          
 </div>
     @if ($errors->has('tax'))
     <small class="text-danger">{{ $errors->first('tax') }}</small>
@@ -233,7 +233,8 @@
 
         $("#total").html("US " + total.toFixed(2));
         if(impuesto == 0){
-            total_impuesto = total_impuesto 
+           //total_impuesto = total_impuesto;
+            total_impuesto = 0;
         }
 
         else{

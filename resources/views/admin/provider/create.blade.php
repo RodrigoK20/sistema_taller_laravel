@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title','Registro de Categoria')
+@section('title','Registro de Proveedor')
 
 
 @section('content')

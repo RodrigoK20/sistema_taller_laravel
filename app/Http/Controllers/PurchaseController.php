@@ -58,7 +58,7 @@ class PurchaseController extends Controller
   
     public function store(StoreRequest $request)
     {
-       // dd($request->comission_total);
+        //dd($request);
         $purchase = Purchase::create($request->all()+[
             'user_id'=>Auth::user()->id,
             'purchase_date'=>Carbon::now('America/El_Salvador'),

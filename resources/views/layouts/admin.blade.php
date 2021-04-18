@@ -107,8 +107,16 @@
 
       <!-- partial -->
       <div class="main-panel">
+
+       <!--Spinner -->
+         <div class="loader-wrapper">
+         <span class="loader"><span class="loader-inner"></span></span>
+        </div>
+
           @yield('content')
         <div class="content-wrapper">
+
+     
           
         </div>
         <!-- content-wrapper ends -->
@@ -141,6 +149,14 @@
    
     <!-- End custom js for this page-->
     @yield('scripts')
+
+    <script>
+    
+        $(window).on("load",function(){
+          $(".loader-wrapper").fadeOut("slow");
+        });
+    </script>
+
 </body>
 
 
