@@ -22,6 +22,7 @@ class CreateSalesTable extends Migration
             $table->decimal('total');
             $table->enum('status', ['VALID','CANCELED'])->default('VALID');
             $table->decimal('total_service_dealer')->nullable();
+            $table->decimal('total_expense')->nullable();
 
             //FK User
             $table->unsignedBigInteger('user_id');

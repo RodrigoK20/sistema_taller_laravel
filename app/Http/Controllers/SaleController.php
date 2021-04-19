@@ -127,7 +127,10 @@ class SaleController extends Controller
            // dd($subtotalserv);
         }
 
-        return view('admin.sale.show', compact('sale','saleDetails','subtotal','serviceDetails','subtotalserv'));
+         //Datos gastos repuestos
+         $gastosDetails = $sale->saleExpenses;
+
+        return view('admin.sale.show', compact('sale','saleDetails','subtotal','serviceDetails','subtotalserv','gastosDetails'));
     }
 
     
@@ -288,8 +291,11 @@ class SaleController extends Controller
                 // dd($subtotalserv);
          }
 
+         //Datos gastos repuestos
+         $gastosDetails = $sale->saleExpenses;
 
-        $pdf = PDF::loadView('admin.sale.boleta', compact('subtotal','saleDetails','sale','business','client','user','imagen_anulado', 'serviceDetails','subtotalserv'));
+   
+        $pdf = PDF::loadView('admin.sale.boleta', compact('subtotal','saleDetails','sale','business','client','user','imagen_anulado', 'serviceDetails','subtotalserv','gastosDetails'));
         return $pdf->download('Boleta_de_venta_'.$client->name.'.pdf');
     }
 
@@ -304,6 +310,28 @@ class SaleController extends Controller
         else{
             $sale->update(['status'=>'VALID']);
             return redirect()->back();
+        }
+    }
+
+    public function gasto(Sale $sale){
+        
+      //  dd($sale->id);
+        //Obteniendo datos de Sale
+        $sale = Sale::where('id', $sale->id)->first();
+        $id = $sale->id;
+
+        //Condicion si ya existe el id en la tabla gastos, regresar al menu
+        $validacion_cliente_gastos = DB::table('expenses')->where('sale_id',$id)->first('sale_id');
+        //dd($validacion_cliente_servicio);
+
+        if($validacion_cliente_gastos != null){
+
+            return redirect()->route('sales.index')->with('status2', 'Error');;
+        }
+
+        else{
+          
+             return view('admin.sale.create3', compact('sale'));
         }
     }
 

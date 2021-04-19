@@ -81,7 +81,7 @@
                                     @foreach($saleDetails as $saleDetail)
                                     <tr>
                                         <td>{{$saleDetail->product->name}}</td>
-                                        <td>s/ {{$saleDetail->price}}</td>
+                                        <td>${{$saleDetail->price}}</td>
                                         <td>{{$saleDetail->discount}} %</td>
                                         <td>{{$saleDetail->quantity}}</td>
                                         <td>s/{{number_format($saleDetail->quantity*$saleDetail->price - $saleDetail->quantity*$saleDetail->price*$saleDetail->discount/100,2)}}
@@ -92,6 +92,48 @@
                             </table>
                         </div>
                     </div>
+
+                    <br>
+
+                <!-- Detalle gastos -->
+                    <div class="form-group">
+                        <h4 class="card-title">Detalles de Gastos Repuestos/Productos</h4>
+                        <div class="table-responsive col-md-12">
+                            <table id="saleDetails" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Repuesto</th>
+                                        <th>Precio</th>
+                                        <th>Cantidad</th>
+                                        <th style="width:10%;">SubTotal($)</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>                         
+                                    <tr>
+                                        <th colspan="3">
+                                            <p align="right">TOTAL GASTOS:</p>
+                                        </th>
+                                        <th>
+                                            <p align="right" value="" id="total_venta">s/{{number_format($sale->total_expense,2)}}</p>
+                                        </th>
+                                    </tr> 
+
+                                </tfoot>
+                                <tbody>
+                                    @foreach($gastosDetails as $gastosDetail)
+                                    <tr>
+                                        <td>{{$gastosDetail->name_product}}</td>
+                                        <td>${{$gastosDetail->price}}</td>
+                                        <td>{{$gastosDetail->quantity}}</td>
+                                        <td>$ {{number_format($gastosDetail->quantity*$gastosDetail->price,2)}}
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
 
             <!-- Detalle servicio taller -->
 

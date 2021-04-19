@@ -211,9 +211,9 @@ p, label, span, table{
 			
 			<td class="textcenter">{{$saleDetail->product->name}}</td>
 			<td class="textcenter">{{$saleDetail->quantity}}</td>
-			<td>{{$saleDetail->price}}</td>
+			<td>${{$saleDetail->price}}</td>
 			<td class="textcenter">{{$saleDetail->discount}}</td>
-			<td>s/ {{number_format($saleDetail->quantity*$saleDetail->price - $saleDetail->quantity*$saleDetail->price*$saleDetail->discount/100,2)}}</td>
+			<td>${{number_format($saleDetail->quantity*$saleDetail->price - $saleDetail->quantity*$saleDetail->price*$saleDetail->discount/100,2)}}</td>
 	
 
 			</tr>
@@ -235,6 +235,44 @@ p, label, span, table{
 				</tr>
 		</tfoot>
 	</table>
+
+	<p><strong>Repuestos</strong></p>
+	<br>
+	<!-- Tabla Repuestos Gastos -->
+	<table id="factura_detalle" class="table-striped">
+			<thead>
+				<tr>
+					<th width="20px" style="text-align:center">Repuesto</th>
+					<th class="center" width="140px">Precio</th>
+					<th class="center" width="135px">Cantidad</th>
+					<th class="center" width="140px">Subtotal ($)</th>	
+				</tr>
+			</thead>
+
+			 @foreach($gastosDetails as $gastoDetail)
+                 <tr>
+				 	<td style="text-align:center">{{$gastoDetail->name_product}}</td>
+                      <td style="text-align:center">${{$gastoDetail->price}}</td>
+                      <td style="text-align:center">{{$gastoDetail->quantity}}</td>
+                      <td style="text-align:center">$  {{number_format($gastoDetail->quantity*$gastoDetail->price,2)}}</td>
+                     </td>
+                    </tr>
+                @endforeach
+			</tbody>
+			
+		
+			<tfoot id="detalle_totales">
+				
+				<tr>
+					<td colspan="3" width="10" class="textright" style="padding-bottom: 10px;"><strong><span>TOTAL GASTOS</strong></span></td>
+					<td class="textright" style="padding-bottom: 9px;"><strong><span>$ {{number_format($sale->total_expense,2)}} </strong></span></td>
+			
+				</tr>
+		
+		</tfoot>
+	</table>
+
+
 
 	
 	<p><strong>Detalle Servicios Taller</strong></p>
@@ -271,7 +309,7 @@ p, label, span, table{
 				</tr>
 				<tr>
 					<td colspan="3" class="textright" style="padding-bottom: 10px;"><strong><span>TOTAL FACTURA</span></strong></td>
-					<td class="textright" style="padding-bottom: 9px;"><strong><span>${{number_format($sale->total + $sale->total_service_dealer,2)}} </span></strong></td>
+					<td class="textright" style="padding-bottom: 9px;"><strong><span>${{number_format($sale->total + $sale->total_service_dealer + $sale->total_expense,2)}} </span></strong></td>
 				</tr>
 		</tfoot>
 	</table>

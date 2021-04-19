@@ -49,9 +49,22 @@ Route::resource('sales', 'SaleController')->names('sales')->except([
     '',
 ]);
 
+//Ruta gastos venta
+Route::get('sales/gastoventa/{sale}','SaleController@gasto')->name('sales.gasto');
+
+//Ruta gastos ventas
+Route::get('sales/gasto','SaleController@guardargasto')->name('sales.guardargasto');
+
+//Ruta gastos venta
+Route::resource('expenses', 'ExpenseController')->names('expenses')->except([
+    '',
+]);
+
 Route::resource('services', 'ServiceController')->names('services')->except([
     '',
 ]);
+
+
 
 //Ruta boleta
 Route::get('sales/boleta/{sale}','SaleController@pdf_boleta')->name('sales.boleta');

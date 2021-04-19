@@ -246,8 +246,8 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button"  class="btn btn-success" id="consultarcash">consultar</button>
-                <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                <button type="button"  class="btn btn-success" id="consultarcash">Consultar</button>
+                <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>
             </div>
 
 

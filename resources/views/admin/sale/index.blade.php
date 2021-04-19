@@ -125,6 +125,10 @@
                                         <a class="btn btn-danger" href="{{route('sales.edit' ,$sale)}}" style="height:35px;width:50px" type="submit" title="Agregar Servicios">
                                             <i class="fas fa-car icon_eye"></i>
                                         </a>
+
+                                        <a class="btn btn-success" href="{{route('sales.gasto' ,$sale)}}" style="height:35px;width:50px" type="submit" title="Agregar Gastos">
+                                            <i class="fas fa-dollar-sign icon_eye"></i>
+                                        </a>
                                         
                                <!--          <button class="btn btn-danger eliminar " style="height:35px;width:50px" href="{{route('sales.destroy', $sale->id)}}" type="submit" title="Eliminar">
                                             <i class="far fa-trash-alt"></i>
@@ -145,6 +149,12 @@
              @if (session('status'))
                  <div class="alert alert-warning">
                  Ya se encuentra registrado el servicio de taller a esta factura!
+             </div>
+            @endif
+
+            @if (session('status2'))
+                 <div class="alert alert-warning">
+                 Ya se encuentra registrado los gastos a esta factura!
              </div>
             @endif
 

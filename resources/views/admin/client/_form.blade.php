@@ -27,7 +27,7 @@
             @if ($errors->has('dui'))
                     <small class="text-danger">{{ $errors->first('dui') }}</small>
              @endif
-             <small id="helpId" class="form-text text-muted">Este campo es opcional.</small>
+             <small id="helpId" class="form-text text-muted">Este campo es opcional. Ingrese los 8 dígitos sin guiones</small>
         </div>
     </div>
     
