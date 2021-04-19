@@ -55,7 +55,7 @@
                                             <p align="right">SUBTOTAL:</p>
                                         </th>
                                         <th>
-                                            <p align="right">s/{{number_format($subtotal,2)}}</p>
+                                            <p align="right">${{number_format($subtotal,2)}}</p>
                                         </th>
                                     </tr>
 
@@ -72,7 +72,7 @@
                                             <p align="right">TOTAL:</p>
                                         </th>
                                         <th>
-                                            <p align="right" value="100" id="total_venta">s/{{number_format($sale->total,2)}}</p>
+                                            <p align="right" value="100" id="total_venta">${{number_format($sale->total,2)}}</p>
                                         </th>
                                     </tr> 
 
@@ -114,7 +114,7 @@
                                             <p align="right">TOTAL GASTOS:</p>
                                         </th>
                                         <th>
-                                            <p align="right" value="" id="total_venta">s/{{number_format($sale->total_expense,2)}}</p>
+                                            <p align="right" value="" id="total_venta">${{number_format($sale->total_expense,2)}}</p>
                                         </th>
                                     </tr> 
 
@@ -156,17 +156,17 @@
                                             <p align="right">TOTAL SERVICIOS TALLER:</p>
                                         </th>
                                         <th>
-                                            <p align="right">s/{{number_format($subtotalserv,2)}}</p>
+                                            <p align="right">${{number_format($subtotalserv,2)}}</p>
                                         </th>
                                     </tr>
 
                              
                                    <tr>
                                         <th colspan="7">
-                                            <p align="right">TOTAL FACTURA:</p>
+                                            <p align="right" style="color:red">TOTAL FACTURA:</p>
                                         </th>
                                         <th>
-                                            <p align="right">$/ {{number_format($sale->total + $sale->total_service_dealer,2)}} </p>
+                                            <p align="right" style="color:red">${{number_format($sale->total + $sale->total_service_dealer + $sale->total_expense,2)}} </p>
                                         </th>
                                     </tr> 
 
