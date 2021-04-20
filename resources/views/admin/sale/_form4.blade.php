@@ -24,7 +24,7 @@
                     <br>
                     <div class="form-group">
                       <label for="description">Precio</label>
-                      <input type="number" step="0.1" class="form-control" name="price" id="price" placeholder="Precio" >
+                      <input type="number" step="0.01" class="form-control" name="price" id="price" placeholder="Precio" >
                     </div>
                   <br>
                     @if ($errors->has('description'))

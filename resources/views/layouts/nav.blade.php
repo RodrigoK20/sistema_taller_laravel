@@ -132,6 +132,14 @@
               <span class="menu-title" style="color: white;">Vehiculos</span>
             </a>
           </li>
+
+              <!-- Gastos  taller !-->
+              <li class="nav-item">
+            <a class="nav-link" href="{{route('expenseshop.index')}}"> 
+              
+              <span class="menu-title" style="color: white;">Gastos</span>
+            </a>
+          </li>
           
 
                    
@@ -159,6 +167,10 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" style="color: white;" href="{{route('reports.date')}}">Reportes por fecha</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: white;" href="{{route('report.expense')}}">Gastos Taller</a>
                     </li>
                     
                 </ul>

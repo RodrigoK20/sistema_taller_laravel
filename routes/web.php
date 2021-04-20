@@ -38,14 +38,21 @@ Route::resource('purchases', 'PurchaseController')->names('purchases')->except([
 
 
 
-//Reportes
+//Reportes 
+//GET-> Pantalla inicial
 Route::get('report/reports_day', 'ReportController@reports_day')->name('reports.day');
 Route::get('report/reports_date', 'ReportController@reports_date')->name('reports.date');
+Route::get('report/reports_expense', 'ReportController@report_expense')->name('report.expense');
 
 Route::post('report/report_results','ReportController@report_results')->name('report.results');
 Route::post('report/report_results_history','ReportController@report_results_history')->name('report.resultshistory');
+Route::post('report/report_results_expense','ReportController@report_results_expense')->name('report.result2');
 
 Route::resource('sales', 'SaleController')->names('sales')->except([
+    '',
+]);
+
+Route::resource('expenseshops', 'ExpenseShopController')->names('expenseshop')->except([
     '',
 ]);
 
@@ -59,6 +66,8 @@ Route::get('sales/gasto','SaleController@guardargasto')->name('sales.guardargast
 Route::resource('expenses', 'ExpenseController')->names('expenses')->except([
     '',
 ]);
+
+
 
 Route::resource('services', 'ServiceController')->names('services')->except([
     '',

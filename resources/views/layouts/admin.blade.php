@@ -61,11 +61,8 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{route('logout')}}" method="POST"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Logout">
                                 <i class="fas fa-power-off text-primary"></i>
-                                Logout
-                            </a>
-
-                              
-                      
+                                Cerrar Sesión
+                            </a>d                      
                         </div>
                     </li>
                     @yield('options')

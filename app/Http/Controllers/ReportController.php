@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Sale;
 use App\Business;
+use App\ExpenseShop;
 
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -37,6 +38,16 @@ class ReportController extends Controller
         $totaltaller = $sales->sum('total_service_dealer');
 
         return view('admin.report.reports_date', compact('sales', 'total','totaltaller'));
+    }
+
+    public function report_expense(){
+
+        $expense = ExpenseShop::Where('status','=','PAID')->get();
+        $total = $expense->sum('mount');
+        $cantidad = DB::select('SELECT COUNT(*) as cantidad_gastos FROM expense_shops e WHERE e.status="PAID"');
+
+
+        return view('admin.report.reportexpense',compact('expense','total','cantidad'));
     }
 
     public function report_results(Request $request){
@@ -96,6 +107,31 @@ class ReportController extends Controller
           
             $pdf = PDF::loadView('admin.report.reports_date_history', compact('business','fi','ff','query_products','total_ganancia','total','cantidad_venta', 'query_services','total_services', 'cantidad_services'))->setPaper('a3', 'portrait');
             return $pdf->download('Reporte_historico'.$fi.'.pdf');
+        }
+
+    }
+
+    public function report_results_expense(Request $request){
+
+       // dd($request->fecha_ini);
+
+        if($request->btn_consultar==1){
+
+       
+        $fi = $request->fecha_ini;
+        $ff = $request->fecha_fin;
+        $expense = ExpenseShop::whereBetween('date_paid', [$fi, $ff])->where('status','=','PAID')->get();
+        $total = $expense->sum('mount');
+
+        $cantidad = DB::select('SELECT COUNT(*) as cantidad_gastos FROM expense_shops e WHERE  e.date_paid BETWEEN :fi AND :ff AND e.status="PAID" ' , ['fi'=>$fi, 'ff'=>$ff]);
+
+        return view('admin.report.reportexpense', compact('expense', 'total','cantidad')); 
+
+        }
+
+        else{
+            //GENERAR PDF REPORTE HISTORICO 
+
         }
 
     }
