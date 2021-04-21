@@ -69,7 +69,8 @@ class SaleController extends Controller
             'tax'=>0,
             'user_id'=>Auth::user()->id,
             'total_service_dealer'=>0,
-            'sale_date'=>Carbon::now('America/El_Salvador'),
+            //'sale_date'=>Carbon::now('America/El_Salvador'),
+            'sale_date'=>$request->sale_date,
         ]);
       
         //Detalle VENTA

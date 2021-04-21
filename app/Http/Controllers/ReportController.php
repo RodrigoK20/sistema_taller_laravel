@@ -136,5 +136,44 @@ class ReportController extends Controller
 
     }
 
+    public function report_purchases(Request $request){
+
+            $fi = $request->fecha_ini. ' 00:00:00';
+            $ff = $request->fecha_fin. ' 23:59:59';
+
+            //Datos Empresa
+            $business = Business::where('id',1)->firstOrFail();
+
+            $query_purchases  = DB::select('SELECT p.purchase_date, p.total as total, p.status, pd.comission as comission, pd.price as price_purchase, pd.quantity as quantity, pro.name as product, pro.sell_price, prov.name as proveedor FROM purchase p INNER JOIN purchase_details pd ON p.id = pd.purchase_id 
+            INNER JOIN products pro ON pro.id = pd.product_id INNER JOIN providers prov ON prov.id = p.provider_id
+            WHERE p.status= "VALID" AND p.purchase_date BETWEEN :fi AND :ff ', ['fi'=>$fi, 'ff'=>$ff]);
+
+            //Total comision generada
+            $total_comision = 0;
+
+    
+            foreach ($query_purchases as $purchases) {
+                $total_comision += $purchases->comission;
+            }
+
+
+            //Numero de compras realizadas
+            $cantidad_compras = DB::select('SELECT COUNT(*) as cantidadcompras FROM purchase p WHERE p.status="VALID" AND p.purchase_date BETWEEN :fi AND :ff ', ['fi'=>$fi, 'ff'=>$ff]);
+            
+            //Total compras
+
+            $total_compras= 0;
+
+            foreach ($query_purchases as $purchases) {
+                $total_compras += $purchases->total;
+            }
+           
+        
+            $pdf = PDF::loadView('admin.report.reports_purchases', compact('business','fi','ff','query_purchases','total_comision','cantidad_compras','total_compras'))->setPaper('a3', 'portrait');
+            return $pdf->download('Reporte_compras_'.$fi.'.pdf');
+
+
+    }
+
   
 }

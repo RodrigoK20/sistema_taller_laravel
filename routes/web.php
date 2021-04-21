@@ -47,6 +47,10 @@ Route::get('report/reports_expense', 'ReportController@report_expense')->name('r
 Route::post('report/report_results','ReportController@report_results')->name('report.results');
 Route::post('report/report_results_history','ReportController@report_results_history')->name('report.resultshistory');
 Route::post('report/report_results_expense','ReportController@report_results_expense')->name('report.result2');
+Route::post('report/report_resultspurchase', 'ReportController@report_purchases')->name('report.purchases');
+
+
+//////////////////////
 
 Route::resource('sales', 'SaleController')->names('sales')->except([
     '',

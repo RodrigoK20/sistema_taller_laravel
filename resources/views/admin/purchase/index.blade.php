@@ -56,6 +56,45 @@
                           </div>
                     
                       </div>
+
+
+{!! Form::open(['route'=>'report.purchases', 'method'=>'POST']) !!}
+
+<div class="row ">
+
+    <div class="col-12 col-md-2">
+        <span>Fecha inicial</span>
+        <div class="form-group">
+            <input class="form-control" type="date" 
+            value="{{old('fecha_ini')}}" 
+            name="fecha_ini" id="fecha_ini" required>
+        </div>
+    </div>
+    <div class="col-12 col-md-2">
+        <span>Fecha final</span>
+        <div class="form-group">
+            <input class="form-control" type="date" 
+            value="{{old('fecha_fin')}}" 
+            name="fecha_fin" id="fecha_fin" required>
+        </div>
+    </div>
+  
+
+    <div class="col-12 col-md-2 text-center mt-4">
+        <div class="form-group">
+           <button type="submit"  class="btn btn-info btn-sm"> <i class="fas fa-file-pdf"></i> Generar Reporte</button>
+        </div>
+    </div>
+    
+
+
+</div>
+{!! Form::close() !!}
+
+
+
+
+
                
 
                     <div class="table-responsive">
@@ -157,20 +196,17 @@
 
 <script>
 
-/* 
-$(document).ready(function () {
-    $("#pic").click(function () {
-       error = document.getElementById("error_picture").value;
-      if(error=="Error"){
-        Swal.fire({
-            type: 'error',
-            text: 'Ya existe un comprobante de pago de la compra!',
-            timer:4500
-        })
-        
+window.onload = function(){
+        var fecha = new Date(); //Fecha actual
+        var mes = fecha.getMonth()+1; //obteniendo mes
+        var dia = fecha.getDate(); //obteniendo dia
+        var ano = fecha.getFullYear(); //obteniendo año
+        if(dia<10)
+          dia='0'+dia; //agrega cero si el menor de 10
+        if(mes<10)
+          mes='0'+mes //agrega cero si el menor de 10
+        document.getElementById('fecha_fin').value=ano+"-"+mes+"-"+dia;
       }
-    });
-}); */
 
 </script>
 

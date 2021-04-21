@@ -10,6 +10,16 @@
 @endsection
 
 <div class="form-group">
+        <label for="discount">Fecha de venta</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon2">DÍA-MES-AÑO</span>
+            </div>
+            <input type="date" class="form-control" name="sale_date" id="sale_date" placeholder="" required >
+        </div>
+    </div>
+
+<div class="form-group">
     <label for="client_id">Cliente</label>
     <select class="form-control" name="client_id" id="client_id">
         @foreach ($clients as $client)
@@ -79,7 +89,10 @@
             <input type="number" class="form-control" name="discount" id="discount" aria-describedby="basic-addon2" value="0">
         </div>
     </div>
+
+
   </div>
+
 
 
   <!-- Checkbox -->

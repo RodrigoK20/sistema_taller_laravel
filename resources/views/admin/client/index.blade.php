@@ -25,7 +25,7 @@
         
     </div>
     <a href="{{route('clients.create')}}">
-    <span class="btn btn-primary md-5" style=" margin-bottom:15px;">+ Crear Clientes</span>
+    <span class="btn btn-primary md-5" style=" margin-bottom:15px;">+ Crear Cliente</span>
     </a>
     <br>
     <div class="row">

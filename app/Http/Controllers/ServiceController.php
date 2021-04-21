@@ -47,7 +47,8 @@ class ServiceController extends Controller
         $sale = Sale::create([
             'user_id'=>Auth::user()->id,
             'total_service_dealer'=>0,
-            'sale_date'=>Carbon::now('America/El_Salvador'),
+            //'sale_date'=>Carbon::now('America/El_Salvador'),
+            'sale_date'=>$request->service_date,
             'tax'=>0,
             'total'=>0,
             'status'=>'VALID',
@@ -64,7 +65,8 @@ class ServiceController extends Controller
        $car_id = $request->car_id;
        //dd($car_id);
        $cost = $request->cost;
-       $date_service = Carbon::now('America/El_Salvador');
+       //$date_service = Carbon::now('America/El_Salvador');
+       $date_service = $request->service_date;
        $client_id = $sale->client_id;
        //Guardando datos a la tabla Services
        //dd($request->cost);

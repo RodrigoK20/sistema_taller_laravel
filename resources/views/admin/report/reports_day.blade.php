@@ -95,7 +95,8 @@
                                         <a href="{{route('sales.show', $sale)}}">{{$sale->id}}</a>
                                     </th>
                                     <td>
-                                        {{\Carbon\Carbon::parse($sale->sale_date)->format('d M y h:i a')}}
+                                    <!-- h:i a !-->
+                                        {{\Carbon\Carbon::parse($sale->sale_date)->format('d M Y ')}}
                                     </td>
                                     <td>{{$sale->total}}</td>
                                     <td>{{$sale->status}}</td>

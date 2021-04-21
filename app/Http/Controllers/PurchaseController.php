@@ -61,7 +61,8 @@ class PurchaseController extends Controller
         //dd($request);
         $purchase = Purchase::create($request->all()+[
             'user_id'=>Auth::user()->id,
-            'purchase_date'=>Carbon::now('America/El_Salvador'),
+           // 'purchase_date'=>Carbon::now('America/El_Salvador'),
+           'purchase_date'=>$request->purchase_date,
         ]);
 
         //Detalle compra FORMA 1

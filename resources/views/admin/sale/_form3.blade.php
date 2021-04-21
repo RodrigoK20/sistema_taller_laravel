@@ -59,6 +59,17 @@
     </div>
   </div>
 
+  
+
+  <div class="form-group">
+        <label for="discount">Fecha de servicio</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon2">DÍA-MES-AÑO</span>
+            </div>
+            <input type="date" class="form-control" name="service_date" id="service_date" placeholder="" required >
+        </div>
+    </div>
 
   <!-- Checkbox -->
   <i class="fas fa-dollar-sign fa-3x" ></i> <br><br>

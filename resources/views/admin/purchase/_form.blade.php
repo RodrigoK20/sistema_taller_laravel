@@ -73,8 +73,13 @@
     @endif
 </div>
 
+<div class="form-group col-md-12">
+    <label for="description">Fecha Registro</label>
 
-
+    
+    <input type="date" class="form-control" name="purchase_date" id="purchase_date" placeholder="" required >
+    </div>
+    
 </div>
 
 <input type="hidden" id="comission_prod" name="comission_prod">
@@ -244,9 +249,9 @@
         total_comision = comision; 
        
         total_pagar = total + total_impuesto;
-        $("#total_impuesto").html("US " + total_impuesto.toFixed(2));
-        $("#total_comision").html("US " + total_comision.toFixed(2));
-        $("#total_pagar_html").html("US " + total_pagar.toFixed(2));
+        $("#total_impuesto").html("$" + total_impuesto.toFixed(2));
+        $("#total_comision").html("$" + total_comision.toFixed(2));
+        $("#total_pagar_html").html("$" + total_pagar.toFixed(2));
         $("#total_pagar").val(total_pagar.toFixed(2));
 
         document.getElementById("comission_total").value = total_comision.toFixed(2);
@@ -264,9 +269,9 @@
         total = total - subtotal[index];
         total_impuesto = total * impuesto / 100;
         total_pagar_html = total + total_impuesto;
-        $("#total").html("US" + total);
-        $("#total_impuesto").html("US" + total_impuesto);
-        $("#total_pagar_html").html("US" + total_pagar_html);
+        $("#total").html("$" + total);
+        $("#total_impuesto").html("$" + total_impuesto);
+        $("#total_pagar_html").html("$" + total_pagar_html);
         $("#total_pagar").val(total_pagar_html.toFixed(2));
         $("#fila" + index).remove();
         evaluar();
