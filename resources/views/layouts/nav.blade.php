@@ -140,6 +140,14 @@
               <span class="menu-title" style="color: white;">Gastos</span>
             </a>
           </li>
+
+            <!-- Cotizacion taller !-->
+                     <li class="nav-item">
+            <a class="nav-link" href="{{route('cotizacions.index')}}"> 
+              
+              <span class="menu-title" style="color: white;">Cotización</span>
+            </a>
+          </li>
           
 
                    

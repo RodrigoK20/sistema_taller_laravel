@@ -41,9 +41,9 @@
                     <li class="nav-item">
                       <a class="nav-link" id="profile-tab" data-toggle="tab" href="#add" role="tab" aria-controls="profile-1" aria-selected="false"><i class="fas fa-plus-circle"></i> Agregar Gasto</a>
                     </li>
-                    <li class="nav-item">
+                  <!--   <li class="nav-item">
                       <a class="nav-link" id="contact-tab" data-toggle="tab" href="#report" role="tab" aria-controls="contact-1" aria-selected="false"><i class="fas fa-chart-line"></i> Informes</a>
-                    </li>
+                    </li> -->
                   </ul>
 
                   <!-- Index !-->

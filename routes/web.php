@@ -31,6 +31,7 @@ Route::resource('categorywork','CategoryWorkController')->names('categorieswork'
 Route::resource('workshop','WorkShopController')->names('workshops');
 Route::resource('products', 'ProductController')->names('products');
 Route::resource('providers', 'ProviderController')->names('providers');
+Route::resource('cotizacions', 'CotizacionController')->names('cotizacions');
 Route::resource('purchases', 'PurchaseController')->names('purchases')->except([
     'update', ''
 ]);
