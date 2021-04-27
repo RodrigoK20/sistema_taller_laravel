@@ -105,7 +105,7 @@
                                         @csrf
 
 
-                                        <a class="btn btn-primary" type="submit" href="{{route('expenseshop.edit', $gasto->id)}}"   style="height:35px;width:50px" title="Editar">
+                                        <a class="btn btn-primary" type="submit" href="{{route('expenseshop.edit', $gasto->id)}}"   style="height:35px;width:50px" title="Pagar">
                                             <i class="fas fa-money-bill-alt btn-icon-append icon_edit"></i>
                                         </a>
                                         

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 <style type="text/css">
-    .icon_edit {
+    .icon_edit3 {
         padding-top: 8px;
     }
 </style>
@@ -98,14 +98,14 @@
 
                                                     <td style="width: 50px;">
 
-                                                        <button
-                                                            class="btn btn-primary eliminar "
-                                                            style="height:35px;width:50px"
-                                                            href=""
+                                                        <a
+                                                            class="btn btn-warning icon_edit "
+                                                            style="height:30px;width:50px"
+                                                            href="{{route('cotizacions.boleta', $cot)}}"
                                                             type="submit"
-                                                            title="Eliminar">
+                                                            title="Cotizacion">
                                                             <i class="fas fa-file-pdf"></i>
-                                                        </button>
+                                                        </a>
 
                                                     </td>
                                                 </tr>

@@ -82,6 +82,7 @@ Route::resource('services', 'ServiceController')->names('services')->except([
 
 //Ruta boleta
 Route::get('sales/boleta/{sale}','SaleController@pdf_boleta')->name('sales.boleta');
+Route::get('cotizacions/boleta/{cot}','CotizacionController@pdf_cotizacion')->name('cotizacions.boleta');
 
 Auth::routes();
 

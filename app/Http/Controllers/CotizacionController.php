@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Cotizacion;
 use App\CotizacionDetails;
 use App\Client;
+use App\Business;
+use App\Car;
+
+use Barryvdh\DomPDF\Facade as PDF;
+
 use Illuminate\Http\Request;
 
 class CotizacionController extends Controller
@@ -69,7 +74,8 @@ class CotizacionController extends Controller
   
     public function show(Cotizacion $cotizacion)
     {
-        //
+
+       
     }
 
 
@@ -88,5 +94,31 @@ class CotizacionController extends Controller
     public function destroy(Cotizacion $cotizacion)
     {
         //
+    }
+
+    public function pdf_cotizacion(Cotizacion $cot){
+         //REPORTE COTIZACION 
+        //dd($cot);
+
+        $imagen_anulado = "anulado.png";
+
+        //Acceder al detalle de la cotizacion segun RELACION
+        $cotizacionDetails = $cot->cotizacionDetails;
+
+        //Datos Empresa
+        $business = Business::where('id',1)->firstOrFail();
+
+        //Datos cliente
+        $client = Client::where('id',$cot->client_id)->firstOrFail();
+
+        //Datos Carro
+        $car = Car::where('id',$cot->car_id)->firstOrFail();
+        
+        //Datos usuario
+        //$user = User::where('id', $sale->user_id)->firstOrFail();
+
+    
+        $pdf = PDF::loadView('admin.cotizacion.report', compact('cotizacionDetails','business','client','car','cot','imagen_anulado'));
+        return $pdf->download('Cotizacion '.$client->name. ' '.$cot->date. '.pdf');
     }
 }
