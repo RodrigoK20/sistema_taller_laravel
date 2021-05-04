@@ -7,8 +7,10 @@ use App\CotizacionDetails;
 use App\Client;
 use App\Business;
 use App\Car;
+use App\CategoryWork;
 
 use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
@@ -26,7 +28,8 @@ class CotizacionController extends Controller
     public function create()
     {
         $clients = Client::get();
-        return view('admin.cotizacion.create', compact('clients'));
+        $categories = CategoryWork::get();
+        return view('admin.cotizacion.create', compact('clients','categories'));
     }
 
  
@@ -121,4 +124,33 @@ class CotizacionController extends Controller
         $pdf = PDF::loadView('admin.cotizacion.report', compact('cotizacionDetails','business','client','car','cot','imagen_anulado'));
         return $pdf->download('Cotizacion '.$client->name. ' '.$cot->date. '.pdf');
     }
+
+
+    
+    public function get_services_by_id(Request $request){
+
+       // DD($request);
+        
+        if ($request->ajax()) {   
+            $result = DB::select("SELECT w.id, w.name_service,w.cost, w.description FROM workshops w WHERE w.status='ACTIVE' AND w.category_work_id = :category_id", ['category_id'=>$request->category_id]);
+            
+            return response()->json(['result'=>$result]);
+        }
+
+       
+    }
+
+    public function get_service_data_by_id(Request $request){
+
+        // DD($request);
+         
+         if ($request->ajax()) {   
+             $result = DB::select("SELECT w.name_service,w.cost FROM workshops w WHERE w.status='ACTIVE' AND w.id = :service_id", ['service_id'=>$request->service_id]);
+             
+             return response()->json(['result'=>$result]);
+         }
+ 
+        
+     }
+
 }

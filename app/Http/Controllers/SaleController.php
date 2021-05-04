@@ -12,6 +12,8 @@ use App\Service;
 use App\Purchase;
 use App\PurchaseDetails;
 use App\Car;
+use App\CategoryWork;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests\Purchase\StoreRequest;
@@ -43,7 +45,7 @@ class SaleController extends Controller
    public function index()
     {
       
-        $sales = Sale::get();
+        $sales = Sale::all()->sortByDesc('sale_date');
         return view('admin.sale.index', compact('sales'));
 
     }
@@ -87,7 +89,7 @@ class SaleController extends Controller
 
             //Obtener max ID
             $sale = Sale::orderBy('id', 'desc')->first(); 
-            $workshops = Workshop::where('status', 'ACTIVE')->get();
+            $workshops = CategoryWork::get();
             $cars = Car::where('status','=','ACTIVE')->where('client_id','=',$sale->client_id)->get();
           
 
@@ -175,7 +177,7 @@ class SaleController extends Controller
         $workshop_id = $request->workshop_id;
         $car_id = $request->car_id;
         $cost = $request->cost;
-        $date_service = Carbon::now('America/El_Salvador');
+        $date_service = $request->sale->sale_date;
         $client_id = $sale->client_id;
         //Guardando datos a la tabla Services
         //dd($request->cost);

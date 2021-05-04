@@ -164,7 +164,7 @@
                 <tbody>
                     <tr>
                         <td style="text-align:center" class="tddetalle">{{$purchase->user->name}}</td>
-                        <td style="text-align:center" class="tddetalle">{{$purchase->created_at}}</td>
+                        <td style="text-align:center" class="tddetalle">{{$purchase->purchase_date}}</td>
                     </tr>
                 </tbody>
             </table>

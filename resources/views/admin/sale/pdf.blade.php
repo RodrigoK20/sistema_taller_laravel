@@ -187,13 +187,13 @@
                 <thead>
                     <tr id="fv">
                         <th>CLIENTE</th>
-                        <th>FECHA Y HORA VENTA</th>
+                        <th>FECHA VENTA</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td style="text-align:center" class="tddetalle">{{$sale->user->name}}</td>
-                        <td style="text-align:center" class="tddetalle">{{$sale->created_at}}</td>
+                        <td style="text-align:center" class="tddetalle">{{$sale->sale_date}}</td>
                     </tr>
                 </tbody>
             </table>

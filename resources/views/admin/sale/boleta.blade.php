@@ -317,7 +317,7 @@ p, label, span, table{
 
 	<div>
 		<p class="nota">Si usted tiene preguntas sobre esta factura, <br>pongase en contacto con nombre, teléfono y Email</p>
-		<h4 class="label_gracias">¡Gracias por su compra!</h4>
+		<h4 class="label_gracias">¡Gracias por su preferencia!</h4>
 
 		@if($sale->status == "CANCELED")
 

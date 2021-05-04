@@ -51,7 +51,7 @@
 
 <div class="form-group col-md-6">
 
-<label for="price">Producto / Repuesto</label>
+<label for="product">Producto / Repuesto</label>
         <div class="input-group">
                     
     <input type="text" name="product" id="product" class="form-control"  aria-describedby="helpId"  >             
@@ -74,14 +74,42 @@
     
 </div>
 
+</div>
+
+
     
+
+<!-- SELECT CATEGORIA SERVICIO -->
+
+<div class="form-group col-md-6">
+
+<label for="workshop">Categoria Taller</label>
+              <!-- <select class="form-control selectpicker" data-live-search="true" name="product_id" id="product_id">   -->
+             <select class="form-control" name="category_id" id="category_id1">
+                <option value="" disabled selected>Selecccione una categoria de taller</option>
+                @foreach ($categories as $category)
+                <option value="{{$category->id}}" >{{$category->name}}</option>
+              
+                @endforeach
+            </select>
+
+    
+</div>
+
+<div class="form-group col-md-6">
+    <label for="client_id">Servicio</label>
+    <select class="form-control" name="service_id" id="service_id1">
+   
+    </select>
 </div>
 
 
 
-    
-</div>
 
+
+
+
+</div>
 
 <div class="form-group">
 <button type="button" id="agregar" class="btn btn-primary float-left">Agregar producto</button>
@@ -100,7 +128,7 @@
             <thead>
                 <tr>
                      <th>Eliminar</th>
-                    <th>Producto</th>
+                    <th>Producto/Servicio</th>
                     <th>Cantidad</th>
                     <th>Precio</th>
                     <th style="width:1%;">SubTotal(US)</th>
@@ -157,7 +185,8 @@
    
     $("#guardar").hide();
 
-    var client_id1 = $('#client_id1');
+
+var client_id1 = $('#client_id1');
 
 //SELECT CLIENTE Y OBTENER VEHICULOS ASOCIADOS AL CLIENTE
 client_id1.change(function(){
@@ -175,11 +204,67 @@ client_id1.change(function(){
                    cars.append(`<option value="${value.id}">${value.license_plate}</option>`);
                  
                 })
-
                              
         }
     });
 }); 
+
+
+
+var category_id1 = $('#category_id1');
+
+//SELECT CATEOGORIA TALLER Y OBTENER SERVICIOS ASOCIADOS A LA CATEGORIA 
+category_id1.change(function(){
+        $.ajax({
+            url: "{{route('get_services_by_id')}}",
+            method: 'GET',
+            data:{
+                category_id: category_id1.val(),
+            },
+            success: function(data){
+                //console.log(data);
+                $("#price").val(data.result[0].cost);
+                $("#product").val(data.result[0].name_service);
+                $("#quantity").val(1);
+
+                let services = $("#service_id1");
+                services.empty();
+                $(data.result).each(function(index, value){ 
+                    services.append(`<option value="${value.id}">${value.name_service}</option>`);
+                 
+                })
+
+                             
+        }
+    });
+});
+
+//SELECT SERVICIOS TALLER, CARGAR NOMBRE Y PRECIO MANO DE OBRA
+var service_id1 = $('#service_id1');
+
+service_id1.change(function(){
+
+   
+     $.ajax({
+            url: "{{route('get_service_data_by_id')}}",
+            method: 'GET',
+            data:{
+                service_id: service_id1.val(),
+            },
+            success: function(data){
+               // console.log(data);
+                $("#price").val(data.result[0].cost);
+                $("#product").val(data.result[0].name_service);
+                $("#quantity").val(1);
+
+        },
+     
+    });
+    
+  
+}); 
+
+
 
     function agregar() {
     

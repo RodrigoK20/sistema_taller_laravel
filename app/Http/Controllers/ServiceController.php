@@ -14,6 +14,8 @@ use App\Workshop;
 use App\Purchase;
 use App\PurchaseDetails;
 use App\Car;
+use App\CategoryWork;
+
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
@@ -34,7 +36,7 @@ class ServiceController extends Controller
         $clients = Client::get();
         $products = Product::where('status','=','ACTIVE')->get();
         $cars = Car::where('status','=','ACTIVE')->get();
-        $workshops = Workshop::where('status', 'ACTIVE')->get();
+        $workshops = CategoryWork::get();
         
         return view('admin.sale.create2', compact('sales','clients','products','cars','workshops'));
     }

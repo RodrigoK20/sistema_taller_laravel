@@ -32,26 +32,40 @@
 </div>
 
 <div class="form-row">
-    <div class="form-group col-md-4">
-        <div class="form-group">
-            <label for="workshop">Servicio taller</label>
+    <div class="form-group col-md-6">
+
+    <label for="workshop">Categoria Taller</label>
               <!-- <select class="form-control selectpicker" data-live-search="true" name="product_id" id="product_id">   -->
              <select class="form-control" name="workshop_id" id="workshop_id1">
-                <option value="" disabled selected>Selecccione un producto</option>
+                <option value="" disabled selected>Selecccione una categoria de taller</option>
                 @foreach ($workshops as $workshop)
-                <option value="{{$workshop->id}}" >{{$workshop->name_service}}</option>
+                <option value="{{$workshop->id}}" >{{$workshop->name}}</option>
               
                 @endforeach
             </select>
-        </div>
-    </div>
-    <div class="form-group col-md-4">
+</div>
+
+<div class="form-group col-md-6">
+    
+    <label for="client_id">Servicio</label>
+    <select class="form-control" name="service_id" id="service_id1">
+   
+    </select>
+</div>
+
+</div>
+
+
+
+<div class="form-row">
+ 
+    <div class="form-group col-md-6">
         <div class="form-group">
             <label for="">Mano de Obra ($)</label>
             <input type="text" name="cost" id="cost" value="" class="form-control" disabled>
           </div>
     </div>
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-6">
         <div class="form-group">
             <label for="price">Descripción</label>
             <textarea type="number" class="form-control" name="" id="description" aria-describedby="helpId" disabled> </textarea>
@@ -161,22 +175,54 @@ $("#guardar2").hide();
 
 var workshop_id1 = $('#workshop_id1');
 
-//SELECT CHANGE Y OBTENER DATOS
+//SELECT CATEOGORIA TALLER Y OBTENER SERVICIOS ASOCIADOS A LA CATEGORIA 
 workshop_id1.change(function(){
         $.ajax({
-            url: "{{route('get_workshops_by_id')}}",
+            url: "{{route('get_services_by_id')}}",
             method: 'GET',
             data:{
-                workshop_id: workshop_id1.val(),
+                category_id: workshop_id1.val(),
             },
             success: function(data){
                 console.log(data);
-                $("#cost").val(data.cost);
-                $("#description").val(data.description);
-              
+                $("#cost").val(data.result[0].cost);
+                $("#description").val(data.result[0].description);
+                
+
+                let services = $("#service_id1");
+                services.empty();
+                $(data.result).each(function(index, value){ 
+                    services.append(`<option value="${value.id}">${value.name_service}</option>`);
+                 
+                })
+
+                             
         }
     });
 });
+
+//SELECT SERVICIOS TALLER, CARGAR NOMBRE Y PRECIO MANO DE OBRA
+var service_id1 = $('#service_id1');
+
+service_id1.change(function(){
+
+   
+     $.ajax({
+            url: "{{route('get_service_data_by_id')}}",
+            method: 'GET',
+            data:{
+                service_id: service_id1.val(),
+            },
+            success: function(data){
+               // console.log(data);
+                $("#cost").val(data.result[0].cost);
+
+        },
+     
+    });
+    
+  
+}); 
 
 
 var client_id1 = $('#client_id1');
@@ -205,10 +251,10 @@ client_id1.change(function(){
 
 
 function agregar() {
-    datosServicio= document.getElementById('workshop_id1').value.split('_');
+    datosServicio= document.getElementById('service_id1').value.split('_');
 
     workshop_id = datosServicio[0];
-    servicio = $("#workshop_id1 option:selected").text();
+    servicio = $("#service_id1 option:selected").text();
     cost = $("#cost").val();
     car_id = $("#car_id1").val();
     license_plate = $("#car_id1 option:selected").text();

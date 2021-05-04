@@ -198,7 +198,7 @@ p, label, span, table{
 	<table id="factura_detalle" class="table-striped">
 			<thead>
 				<tr>
-					<th width="120px">Producto</th>
+					<th width="120px">Producto/Servicio</th>
 					<th class="center" width="125px">Cantidad</th>
 					<th class="center" width="120px">Precio Unitario ($)</th>
 					<th class="center" width="135px">Subtotal $</th>

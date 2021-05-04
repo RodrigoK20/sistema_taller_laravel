@@ -123,6 +123,9 @@ Route::get('get_products_by_id_ganancia', 'ProductController@get_products_by_id_
 //Cars
 Route::get('get_cars_by_id', 'ClientController@get_cars_by_id')->name('get_cars_by_id');
 
+//Cotizacion services
+Route::get('get_services_by_id', 'CotizacionController@get_services_by_id')->name('get_services_by_id');
+Route::get('get_service_data_by_id', 'CotizacionController@get_service_data_by_id')->name('get_service_data_by_id');
 
 Route::get('print_barcode', 'ProductController@get_bar_code')->name('print_barcode');
 

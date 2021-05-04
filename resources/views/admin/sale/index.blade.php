@@ -69,7 +69,7 @@
                                     <th>Total</th>
                                     <th>Total Servicio</th>
                                     <th>Estado</th>
-                                    <th style="width:25%">Acciones</th>
+                                    <th style="width:30%">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -77,7 +77,7 @@
                                 <tr>
                                     <td>{{$sale->id}}</td>
 
-                                    <td>{{$sale->sale_date}}</td>
+                                    <td> {{\Carbon\Carbon::parse($sale->sale_date)->format('d M Y')}}</td>
 
                                     <td>{{$sale->client->name}}</td>
 
