@@ -129,7 +129,7 @@
                 <li class="nav-item">
             <a class="nav-link" href="{{route('cars.index')}}"> 
               
-              <span class="menu-title" style="color: white;">Vehiculos</span>
+              <span class="menu-title" style="color: white;">Vehículos</span>
             </a>
           </li>
 
