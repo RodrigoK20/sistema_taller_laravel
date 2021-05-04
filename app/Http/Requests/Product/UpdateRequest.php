@@ -24,7 +24,8 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=> 'required|string|unique:products,name,'.$this->route('product')->id.' |max:255',
+           // 'name'=> 'required|string|unique:products,name,'.$this->route('product')->id.' |max:255',
+           'name'=> 'required|string|max:255',
             'image'=> 'nullable|dimensions:min_width=100,min_height=200',
             'description'=> 'nullable|string|max:250',
             'code'=> 'string|min:8|unique:products,code,'. $this->route('product')->id.'|max:8',
@@ -40,7 +41,7 @@ class UpdateRequest extends FormRequest
             'name.required' => 'Este campo es requerido',
             'name.string' => 'El valor no es correcto',
             'name.max' => 'Solo se permiten 255 caracteres',
-            'name.unique' => 'El producto ya esta registrado',
+            //'name.unique' => 'El producto ya esta registrado',
 
             'image.required' => 'El campo es requerido',
             'image.dimensions' => 'Solo se permiten imágenes de 100x200 px.',

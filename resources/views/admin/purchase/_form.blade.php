@@ -28,7 +28,7 @@
     <label for="product_id">Producto</label>
     <select class="form-control" name="product_id" id="product_id">
         @foreach ($products as $product)
-        <option value="{{$product->id}}">{{$product->name}}</option>
+        <option value="{{$product->id}}">{{$product->name}} - {{$product->unit->name}}</option>
         @endforeach
     </select>
 </div>
@@ -248,7 +248,7 @@
 
         total_comision = comision; 
        
-        total_pagar = total + total_impuesto;
+        total_pagar = total - comision;
         $("#total_impuesto").html("$" + total_impuesto.toFixed(2));
         $("#total_comision").html("$" + total_comision.toFixed(2));
         $("#total_pagar_html").html("$" + total_pagar.toFixed(2));
@@ -269,6 +269,11 @@
         total = total - subtotal[index];
         total_impuesto = total * impuesto / 100;
         total_pagar_html = total + total_impuesto;
+
+        total_comision = comision - total;
+
+        $("#total_comision").html("$" + total_comision.toFixed(2));
+
         $("#total").html("$" + total);
         $("#total_impuesto").html("$" + total_impuesto);
         $("#total_pagar_html").html("$" + total_pagar_html);

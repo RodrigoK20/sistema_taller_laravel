@@ -172,7 +172,6 @@ class PurchaseController extends Controller
         //Business data
         $business = Business::where('id',1)->firstOrFail();
 
-
         //Acceder al detalle de la compras segun RELACION
         $purchaseDetails = $purchase->purchaseDetails;
 

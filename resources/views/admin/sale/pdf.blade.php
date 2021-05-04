@@ -210,6 +210,7 @@
                     <tr id="fa">
                         <th style="text-align:center">CANTIDAD</th>
                         <th style="text-align:center">PRODUCTO</th>
+                        <th style="text-align:center">UNIDAD</th>
                         <th style="text-align:center">GANANCIA</th> 
                         <th style="text-align:center">PRECIO VENTA($)</th>
                         <th style="text-align:center">DESCUENTO(%)</th>
@@ -221,6 +222,7 @@
                     <tr>
                         <td style="text-align:center"  class="tddetalle">{{$saleDetail->quantity}}</td>
                         <td style="text-align:center"  class="tddetalle">{{$saleDetail->product->name}}</td>
+                        <td style="text-align:center"  class="tddetalle">{{$saleDetail->product->unit->name}}</td>
                         <td style="text-align:center" class="tddetalle">${{$saleDetail->gain}}</td>
                         <td style="text-align:center"  class="tddetalle">${{$saleDetail->price}}</td>
                         <td style="text-align:center"  class="tddetalle">%{{$saleDetail->discount}}</td>
@@ -232,7 +234,7 @@
                 <tfoot>
 
                  <tr>
-                        <th colspan="5">
+                        <th colspan="6">
                             <p align="right">GANANCIA PRODUCTOS:</p>
                         </th>
                         <td>

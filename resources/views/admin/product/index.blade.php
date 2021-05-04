@@ -63,6 +63,8 @@
                                     <th>Nombre</th>
                                     <th>Stock</th>
                                     <th>Categoria</th>
+                                    <th>Unidad</th>
+                                    <th>Proveedor</th>
                                     <th>Estado</th>
                                     <th>Acciones</th>
                                 </tr>
@@ -76,7 +78,8 @@
                                     </td>
                                     <td>{{$product->stock}}</td>
                                     <td>{{$product->category->name}}</td>
-                                    
+                                    <td>{{$product->unit->name}}</td>
+                                    <td>{{$product->provider->name}}</td>
                                     @if($product->status == 'ACTIVE')
 
                                     <td>

@@ -179,6 +179,7 @@
                     <tr id="fa">
                         <th style="text-align:center">CANTIDAD</th>
                         <th>PRODUCTO</th>
+                        <th>MEDIDA</th>
                         <th style="text-align:center">COMISION</th>
                         <th style="text-align:center">PRECIO COMPRA</th>
                         <th style="text-align:center">SUBTOTAL ($)</th>
@@ -189,6 +190,7 @@
                     <tr class="row">
                        <td class="tddetalle" style="text-align:center">{{$purchaseDetail->quantity}}</td>
                         <td class="tddetalle" style="text-align:center">{{$purchaseDetail->product->name}}</td>
+                        <td class="tddetalle" style="text-align:center">{{$purchaseDetail->product->unit->name}}</td>
                         <td class="tddetalle" style="text-align:center">${{$purchaseDetail->comission}}</td>
                         <td class="tddetalle" style="text-align:center">${{$purchaseDetail->price}}</td>
                         <td class="tddetalle" style="text-align:center">${{number_format($purchaseDetail->quantity*$purchaseDetail->price,2)}}</td>
@@ -200,7 +202,7 @@
                 <tfoot >
                  
                     <tr>
-                        <th colspan="4" class="thdetalle">
+                        <th colspan="5" class="thdetalle">
                             <p align="right">SUBTOTAL:</p>
                         </th>
                         <td>
@@ -209,7 +211,7 @@
                     </tr>
                   
                     <tr>
-                        <th colspan="4" class="thdetalle">
+                        <th colspan="5" class="thdetalle">
                             <p align="right">TOTAL IMPUESTO ({{$purchase->tax}}%):</p>
                         </th>
                         <td>
@@ -218,7 +220,7 @@
                     </tr>
 
                     <tr>
-                        <th colspan="4" class="thdetalle">
+                        <th colspan="5" class="thdetalle">
                             <p align="right">COMISION TOTAL:</p>
                         </th>
                         <td>
@@ -227,7 +229,7 @@
                     </tr>
 
                     <tr>
-                        <th colspan="4" class="thdetalle">
+                        <th colspan="5" class="thdetalle">
                             <p align="right">TOTAL PAGADO:</p>
                         </th>
                         <td>

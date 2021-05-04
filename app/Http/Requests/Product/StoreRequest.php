@@ -25,7 +25,8 @@ class StoreRequest extends FormRequest
     {
         return [
             
-                'name'=> 'required|string|max:255|unique:products',
+                //'name'=> 'required|string|max:255|unique:products',
+                'name'=> 'required|string|max:255',
                 'image'=> 'nullable|dimensions:min_width=500,min_height=500',
                 'description'=> 'nullable|string|max:250',
                 'code'=> 'nullable|min:8|max:8|unique:products',
@@ -44,7 +45,7 @@ class StoreRequest extends FormRequest
             'name.required' => 'Este campo es requerido',
             'name.string' => 'El valor no es correcto',
             'name.max' => 'Solo se permiten 255 caracteres',
-            'name.unique' => 'El producto ya esta registrado',
+           // 'name.unique' => 'El producto ya esta registrado',
 
             'image.required' => 'El campo es requerido',
             'image.dimensions' => 'Solo se permiten imágenes de 500x500 px.',
