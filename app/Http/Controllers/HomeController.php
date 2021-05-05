@@ -37,7 +37,12 @@ class HomeController extends Controller
         WHERE v.status="VALID" GROUP BY v.sale_date ORDER BY day(v.sale_date) desc limit 15');
 
         $totales = DB::select('SELECT (SELECT ifnull(sum(c.total),0) FROM purchase c WHERE MONTH(c.purchase_date) = EXTRACT(MONTH FROM CURRENT_TIMESTAMP) AND c.status="VALID") as totalcompra, 
-        (SELECT ifnull(sum(v.total + v.total_service_dealer),0) FROM sales v WHERE MONTH(v.sale_date)=EXTRACT(MONTH FROM CURRENT_TIMESTAMP) AND v.status="VALID") as totalventa');
+        (SELECT ifnull(sum(sd.gain),0) FROM sale_details sd JOIN sales s ON s.id = sd.sale_id WHERE MONTH(s.sale_date)=EXTRACT(MONTH FROM CURRENT_TIMESTAMP) AND s.status="VALID") as totalgananciaprod');
+
+        $tallertotales = DB::select("SELECT (SELECT ifnull(sum(s.total_service),0) FROM services s JOIN sales sl ON sl.id = s.sale_id WHERE s.service_date = CURRENT_DATE() AND sl.status='VALID') as totalservicios, 
+        (SELECT ifnull(sum(ex.mount),0) FROM expense_shops ex WHERE ex.date_registry = CURRENT_DATE()) as gastos_taller");
+
+        $totalrepuestosxdia = DB::select("SELECT SUM(e.price * e.quantity) as totalr FROM expenses e WHERE e.date_registry = CURRENT_DATE()");
 
         //Productos mas vendidos
         $productosvendidos = DB::select('SELECT p.code as code, SUM(dv.quantity) as quantity, p.name as name, p.id as id, p.stock as stock FROM products p
@@ -47,10 +52,10 @@ class HomeController extends Controller
         //Productos son stock cero y 5
 
         $productosstock = DB::select('SELECT p.code as code, p.stock as cantidad, p.name as name, p.id as id, p.stock as stock FROM products p
-        order by p.stock DESC LIMIT 25;');
+        order by p.stock DESC LIMIT 35;');
 
 
 
-        return view('home', compact('comprasmes','ventasmes','ventasdia','totales','productosvendidos','productosstock','cantidadclientes','cantidadautos'));
+        return view('home', compact('comprasmes','ventasmes','ventasdia','totales','productosvendidos','productosstock','cantidadclientes','cantidadautos','tallertotales','totalrepuestosxdia'));
     }
 }

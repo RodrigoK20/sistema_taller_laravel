@@ -29,8 +29,7 @@ class ExpenseController extends Controller
         //dd($request->name_product);
          //Obteniendo valores
          $id_sale = $request->sale_id;
-         
-         
+     
           $count = 0;
           while($count < count($id_sale)){
               $details = new Expense();
@@ -38,6 +37,7 @@ class ExpenseController extends Controller
               $details->name_product = $request->name_product[$count];
               $details->price = $request->price[$count];
               $details->quantity = $request->quantity[$count];
+              $details->date_registry = $request->date_registry;
               $details->save();
               $count = $count+1;
           } 

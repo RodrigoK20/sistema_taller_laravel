@@ -144,7 +144,7 @@
         </div>
         <div id="fact">
                 <p>NUMERO DE COMPRA<br />
-                    {{$purchase->id}}</p>
+                    {{$purchase->num_factura}}</p>
         </div>
     </header>
     <br>

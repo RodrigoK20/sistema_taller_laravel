@@ -58,11 +58,12 @@ class PurchaseController extends Controller
   
     public function store(StoreRequest $request)
     {
-        //dd($request->quantity);
+       // dd($request->num_factura);
         $purchase = Purchase::create($request->all()+[
             'user_id'=>Auth::user()->id,
            // 'purchase_date'=>Carbon::now('America/El_Salvador'),
            'purchase_date'=>$request->purchase_date,
+           'num_factura'=>$request->num_factura,
         ]);
 
         //Detalle compra FORMA 1

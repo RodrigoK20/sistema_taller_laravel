@@ -73,12 +73,20 @@
     @endif
 </div>
 
-<div class="form-group col-md-12">
+<div class="form-group col-md-6">
     <label for="description">Fecha Registro</label>
 
     
     <input type="date" class="form-control" name="purchase_date" id="purchase_date" placeholder="" required >
     </div>
+
+
+    <div class="form-group col-md-6">
+    <label for="quantity">Número Factura</label>
+    <input type="number" name="num_factura" id="num_factura" step=1 class="form-control" aria-describedby="helpId" required>
+
+    
+</div>
     
 </div>
 
@@ -180,6 +188,8 @@
    
     function agregar() {
     
+        factura = $('#num_factura').val();
+
         product_id = $("#product_id").val();
         producto = $("#product_id option:selected").text();
         quantity = $("#quantity").val();
@@ -191,7 +201,7 @@
         //alert(comission_total);
 
 
-        if (product_id != "" && impuesto!="" && comission_percent!= "" && quantity != "" && quantity > 0 && price != "" || product_id != product_id) {
+        if (product_id != "" && impuesto!="" && comission_percent!= "" && factura >0  && quantity != "" && quantity > 0 && price != "" || product_id != product_id) {
            
            //Calculando total
             subtotal[cont] = quantity * price;

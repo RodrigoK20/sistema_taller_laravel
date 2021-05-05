@@ -73,7 +73,7 @@ class ReportController extends Controller
             //Datos Empresa
             $business = Business::where('id',1)->firstOrFail();
 
-            $query_products  = DB::select('SELECT s.id as sale_id,s.sale_date as fecha_venta,s.total as total, s.tax as tax, sl.quantity, sl.price, sl.discount, sl.gain, p.name as producto, p.sell_price, cl.name as cliente FROM sales s JOIN sale_details sl ON sl.sale_id = s.id JOIN products p ON p.id = sl.product_id
+            $query_products  = DB::select('SELECT s.id as sale_id,s.sale_date as fecha_venta,s.total as total, s.tax as tax, sl.quantity, sl.price, sl.discount, sl.gain, p.name as producto, p.sell_price, cl.name as cliente, pd.price as costo FROM sales s JOIN sale_details sl ON sl.sale_id = s.id JOIN products p ON p.id = sl.product_id JOIN purchase_details pd ON pd.product_id = sl.product_id
             JOIN clients cl ON cl.id = s.client_id WHERE s.status= "VALID" AND s.sale_date BETWEEN :fi AND :ff ', ['fi'=>$fi, 'ff'=>$ff]);
 
             //Total ganancia
@@ -84,7 +84,15 @@ class ReportController extends Controller
 
             foreach ($query_products as $saleDetail) {
                 $total_ganancia += $saleDetail->gain;
-                $total +=  $saleDetail->total;
+                $total +=  $saleDetail->quantity * $saleDetail->price;
+            }
+
+            //total costos sumatoria
+            $total_costos = 0;
+
+            foreach ($query_products as $saleDetail) {
+                $total_costos += $saleDetail->costo * $saleDetail->quantity;
+                
             }
 
             //Cantidad productos vendidos
@@ -105,7 +113,7 @@ class ReportController extends Controller
             $cantidad_services = DB::select('SELECT COUNT(*) as cantidad_servicios FROM services sv JOIN sales s ON s.id = sv.sale_id WHERE s.status = "VALID" AND sv.service_date BETWEEN :fi AND :ff',['fi'=>$fi, 'ff'=>$ff]);
 
           
-            $pdf = PDF::loadView('admin.report.reports_date_history', compact('business','fi','ff','query_products','total_ganancia','total','cantidad_venta', 'query_services','total_services', 'cantidad_services'))->setPaper('a3', 'portrait');
+            $pdf = PDF::loadView('admin.report.reports_date_history', compact('business','fi','ff','query_products','total_ganancia','total','cantidad_venta', 'query_services','total_services', 'cantidad_services','total_costos'))->setPaper('a3', 'portrait');
             return $pdf->download('Reporte_historico'.$fi.'.pdf');
         }
 

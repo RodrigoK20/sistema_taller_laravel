@@ -38,6 +38,11 @@
                     </div>
 
                     <div class="form-group">
+                      <label for="description">Fecha Registro</label>
+                      <input type="date"  class="form-control"  name="date_registry" id="date_registry" placeholder="Cantidad" required >
+                    </div>
+
+                    <div class="form-group">
                       <!-- ID SALE !-->
                       <input type="hidden" class="form-control" value="{{$sale->id}}"  name="sale_id" id="sale_id" placeholder=""  >
                     </div>

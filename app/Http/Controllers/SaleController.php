@@ -156,7 +156,7 @@ class SaleController extends Controller
 
         else{
 
-            $workshops = Workshop::where('status', 'ACTIVE')->get();
+            $workshops = CategoryWork::get();
             $cars = Car::where('status','=','ACTIVE')->where('client_id','=',$sale->client_id)->get();
 
              return view('admin.sale.service', compact('sale','workshops','cars'));

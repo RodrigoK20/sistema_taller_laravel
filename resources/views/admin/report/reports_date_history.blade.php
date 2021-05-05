@@ -234,7 +234,7 @@
                         <th style="text-align:center">GANANCIA</th> 
                         <th style="text-align:center">PRECIO VENTA($)</th>
                         <th style="text-align:center">DESCUENTO(%)</th>
-                        <th style="text-align:center">IVA(%)</th>
+                        <th style="text-align:center">COSTOS</th>
                         <th style="text-align:center">SUBTOTAL($)</th>
                     </tr>
                 </thead>
@@ -247,7 +247,7 @@
                         <td style="text-align:center" class="tddetalle">${{$saleDetail->gain}}</td>
                         <td style="text-align:center"  class="tddetalle">${{$saleDetail->price}}</td>
                         <td style="text-align:center"  class="tddetalle">{{$saleDetail->discount}}%</td>
-                        <td style="text-align:center"  class="tddetalle">{{$saleDetail->tax}}%</td>
+                        <td style="text-align:center"  class="tddetalle">${{number_format($saleDetail->costo * $saleDetail->quantity,2)}} </td>
                         <td style="text-align:center"  class="tddetalle">${{number_format($saleDetail->quantity*$saleDetail->price - $saleDetail->quantity*$saleDetail->price*$saleDetail->discount/100,2)}}
                         </td>
                     </tr>
@@ -275,6 +275,16 @@
                         @endforeach
                     </td>
                     </tr>
+
+                    <tr>
+                        <th colspan="7">
+                            <p align="right">TOTAL COSTO (DINERO DE INVENTARIO):</p>
+                        </th>
+                        <td>
+                            <p align="right">${{number_format($total_costos,2)}}</p>
+                        </td>
+                    </tr>
+
 
                     <tr>
                         <th colspan="7">

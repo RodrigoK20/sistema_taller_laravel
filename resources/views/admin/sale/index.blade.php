@@ -126,7 +126,7 @@
                                             <i class="fas fa-car icon_eye"></i>
                                         </a>
 
-                                        <a class="btn btn-success" href="{{route('sales.gasto' ,$sale)}}" style="height:35px;width:50px" type="submit" title="Agregar Gastos">
+                                        <a class="btn btn-success" href="{{route('sales.gasto' ,$sale)}}" style="height:35px;width:50px" type="submit" title="Agregar Compra Repuestos">
                                             <i class="fas fa-dollar-sign icon_eye"></i>
                                         </a>
                                         

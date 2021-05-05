@@ -8,7 +8,7 @@ class Expense extends Model
 {
     
     protected $fillable = [
-        'name_product','price', 'quantity','sale_id',
+        'name_product','price', 'quantity','date_registry','sale_id',
     ];
 
     public function sale(){

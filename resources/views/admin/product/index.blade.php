@@ -65,8 +65,8 @@
                                     <th>Categoria</th>
                                     <th>Unidad</th>
                                     <th>Proveedor</th>
-                                    <th>Estado</th>
-                                    <th>Acciones</th>
+                                    <th >Estado</th>
+                                    <th style="width:15%">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>

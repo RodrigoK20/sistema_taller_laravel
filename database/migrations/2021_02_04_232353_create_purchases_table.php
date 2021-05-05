@@ -22,6 +22,7 @@ class CreatePurchasesTable extends Migration
             $table->enum('status', ['VALID','CANCELED'])->default('VALID');
             $table->string('picture')->nullable();
             $table->decimal('comission_total');
+            $table->decimal('num_factura')->nullable();
 
             //FK User
             $table->unsignedBigInteger('user_id');

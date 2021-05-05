@@ -103,6 +103,7 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Fecha</th>
+                                    <th># Factura</th>
                                     <th>Total</th>
                                     <th>Estado</th>
                                     <th style="width:0%">Acciones</th>
@@ -114,6 +115,8 @@
                                     <td>{{$purchase->id}}</td>
 
                                     <td>{{$purchase->purchase_date}}</td>
+
+                                    <td>{{$purchase->num_factura}}</td>
 
                                     <td>{{$purchase->total}}</td>
 

@@ -9,7 +9,7 @@ class Purchase extends Model
     protected $table="purchase";
 
     protected $fillable = [
-        'purchase_date', 'tax', 'total', 'status' ,'picture','comission_total' ,'user_id', 'provider_id',
+        'purchase_date', 'tax', 'total', 'status' ,'picture','comission_total' ,'num_factura', 'user_id', 'provider_id',
     ];
 
     //Configuracion relaciones (ONE TO MANY INVERSE - SINGULAR (SEGUN RELACION TABLA))

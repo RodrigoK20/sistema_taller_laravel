@@ -18,6 +18,7 @@ class CreateExpensesTable extends Migration
             $table->string('name_product');
             $table->decimal('price');
             $table->integer('quantity');
+            $table->date('date_registry');
              //FK SALE
              $table->unsignedBigInteger('sale_id');
              $table->foreign('sale_id')->references('id')->on('sales');

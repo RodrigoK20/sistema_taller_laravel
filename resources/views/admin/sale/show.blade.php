@@ -111,7 +111,7 @@
                                 <tfoot>                         
                                     <tr>
                                         <th colspan="3">
-                                            <p align="right">TOTAL GASTOS:</p>
+                                            <p align="right">TOTAL COMPRA REPUESTOS:</p>
                                         </th>
                                         <th>
                                             <p align="right" value="" id="total_venta">${{number_format($sale->total_expense,2)}}</p>
@@ -166,7 +166,7 @@
                                             <p align="right" style="color:red">TOTAL FACTURA:</p>
                                         </th>
                                         <th>
-                                            <p align="right" style="color:red">${{number_format($sale->total + $sale->total_service_dealer + $sale->total_expense,2)}} </p>
+                                            <p align="right" style="color:red">${{number_format($sale->total + $sale->total_service_dealer,2)}} </p>
                                         </th>
                                     </tr> 
 

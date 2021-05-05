@@ -44,9 +44,9 @@
                     <div class="float-right">
                         <i class="fas fa-shopping-cart fa-4x"></i>
                     </div>
-                    <div class="text-value h4"><strong>$ {{$total->totalventa}} (MES ACTUAL) </strong>
+                    <div class="text-value h4"><strong>$ {{$total->totalgananciaprod}} (MES ACTUAL) </strong>
                     </div>
-                    <div class="h3">Ventas</div>
+                    <div class="h3">Total Ganancias Productos</div>
                 </div>
                 <div class="chart-wrapper mt-3 mx-3" style="height:35px;">
                     <a href="{{route('sales.index')}}" class="small-box-footer h4">Ventas <i
@@ -62,21 +62,21 @@
 
 
     <!-- Dash vehiculos -->
-    @foreach ($cantidadclientes as $numcliente)
+    @foreach ($totalrepuestosxdia as $totalrepuesto)
     <div class="row">
         <div class="col-md-6 grid-margin stretch-card">
             <div class="card text-white bg-primary">
 
                 <div class="card-body pb-0">
                     <div class="float-right">
-                        <i class="fas fa-users fa-4x"></i>
+                        <i class="fas fa-oil-can fa-4x"></i>
                     </div>
-                    <div class="text-value h4"><strong>{{$numcliente->numclientes}}</strong>
+                    <div class="text-value h4"><strong>${{$totalrepuesto->totalr}}</strong>
                     </div>
-                    <div class="h3"># Clientes Registrados</div>
+                    <div class="h3">Total Compra Repuestos (Día Actual)</div>
                 </div>
                 <div class="chart-wrapper mt-3 mx-3" style="height:35px;">
-                    <a href="{{route('clients.index')}}" class="small-box-footer h4">Clientes <i
+                    <a href="{{route('sales.index')}}" class="small-box-footer h4">Ventas <i
                             class="fa fa-arrow-circle-right"></i></a>
                 </div>
 
@@ -96,6 +96,53 @@
                     <div class="text-value h4"><strong>{{$autos->numautos}}</strong>
                     </div>
                     <div class="h3"># Vehículos Registrados</div>
+                </div>
+                <div class="chart-wrapper mt-3 mx-3" style="height:35px;">
+                    <a href="{{route('sales.index')}}" class="small-box-footer h4">Ventas <i
+                            class="fa fa-arrow-circle-right"></i></a>
+                </div>
+
+            </div>
+        </div>
+        @endforeach
+    </div>
+
+
+        <!-- Dash gastos -->
+        @foreach ($tallertotales as $total)
+    <div class="row">
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card text-white bg-dark">
+
+                <div class="card-body pb-0">
+                    <div class="float-right">
+                        <i class="fas fa-money-bill-wave fa-4x"></i>
+                    </div>
+                    <div class="text-value h4"><strong>${{$total->gastos_taller}}</strong>
+                    </div>
+                    <div class="h3">Gastos Diario Taller</div>
+                </div>
+                <div class="chart-wrapper mt-3 mx-3" style="height:35px;">
+                    <a href="{{route('expenseshop.index')}}" class="small-box-footer h4">Gastos <i
+                            class="fa fa-arrow-circle-right"></i></a>
+                </div>
+
+            </div>
+        </div>
+ 
+
+     
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card  text-white bg-dark">
+
+                <div class="card-body pb-0">
+
+                    <div class="float-right">
+                        <i class="fas fa-wrench fa-4x"></i>
+                    </div>
+                    <div class="text-value h4"><strong>${{$total->totalservicios}}</strong>
+                    </div>
+                    <div class="h3">Total Servicios Taller (Día Actual)</div>
                 </div>
                 <div class="chart-wrapper mt-3 mx-3" style="height:35px;">
                     <a href="{{route('cars.index')}}" class="small-box-footer h4">Vehículos <i

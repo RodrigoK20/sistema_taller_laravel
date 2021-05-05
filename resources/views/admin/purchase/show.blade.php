@@ -50,8 +50,8 @@
                             <p>{{$purchase->provider->name}}</p>
                         </div>
                         <div class="col-md-3 text-center">
-                            <label class="form-control-label" for="num_compra"><strong>Número Compra</strong></label>
-                            <p>{{$purchase->id}}</p>
+                            <label class="form-control-label" for="num_compra"><strong>Número Factura</strong></label>
+                            <p>{{$purchase->num_factura}}</p>
                         </div>
                         <div class="col-md-3 text-center">
                             <label class="form-control-label" for="num_compra"><strong>Comprador</strong></label>
