@@ -119,8 +119,8 @@
                                     <td>
                                         {{\Carbon\Carbon::parse($sale->sale_date)->format('d M Y ')}}
                                     </td>
-                                    <td>{{$sale->total}}</td>
-                                    <td>{{$sale->total_service_dealer}}</td>
+                                    <td>${{$sale->total}}</td>
+                                    <td>${{$sale->total_service_dealer}}</td>
                                     <td>{{$sale->status}}</td>
                                     <td style="">
 

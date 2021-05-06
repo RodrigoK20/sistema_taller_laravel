@@ -73,7 +73,7 @@
                     </div>
                     <div class="text-value h4"><strong>${{$totalrepuesto->totalr}}</strong>
                     </div>
-                    <div class="h3">Total Compra Repuestos (Día Actual)</div>
+                    <div class="h3">Total Compra Repuestos (Día Actual) (Caja Chica)</div>
                 </div>
                 <div class="chart-wrapper mt-3 mx-3" style="height:35px;">
                     <a href="{{route('sales.index')}}" class="small-box-footer h4">Ventas <i
@@ -120,7 +120,7 @@
                     </div>
                     <div class="text-value h4"><strong>${{$total->gastos_taller}}</strong>
                     </div>
-                    <div class="h3">Gastos Diario Taller</div>
+                    <div class="h3">Gastos Taller (Mes Actual)</div>
                 </div>
                 <div class="chart-wrapper mt-3 mx-3" style="height:35px;">
                     <a href="{{route('expenseshop.index')}}" class="small-box-footer h4">Gastos <i

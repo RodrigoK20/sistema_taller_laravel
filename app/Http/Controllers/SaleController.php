@@ -45,7 +45,8 @@ class SaleController extends Controller
    public function index()
     {
       
-        $sales = Sale::all()->sortByDesc('sale_date');
+        $sales =  Sale::orderBy('sale_date', 'desc')->get();
+        //dd($sales);
         return view('admin.sale.index', compact('sales'));
 
     }
@@ -216,6 +217,7 @@ class SaleController extends Controller
 
     public function pdf(Sale $sale)
     {
+        //dd($sale->id);
 
          //Business data
          $business = Business::where('id',1)->firstOrFail();
@@ -254,7 +256,20 @@ class SaleController extends Controller
            // dd($subtotalserv);
         }
 
-        $pdf = PDF::loadView('admin.sale.pdf', compact('subtotal','saleDetails','sale','business', 'serviceDetails','subtotalserv','total_ganancia'));
+        $query_products  = DB::select('SELECT s.id as sale_id,s.sale_date as fecha_venta,s.total as total, s.tax as tax, sl.quantity, sl.price, sl.discount, sl.gain, p.name as producto, p.sell_price, cl.name as cliente, pd.price as costo, u.name as unidad FROM sales s JOIN sale_details sl ON sl.sale_id = s.id JOIN products p ON p.id = sl.product_id 
+        JOIN purchase_details pd ON pd.id = p.id JOIN units u ON u.id = p.unit_id
+        JOIN clients cl ON cl.id = s.client_id  WHERE s.id= :id ORDER BY s.id ASC ', ['id'=>$sale->id]);
+
+         //total costos sumatoria
+         $total_costos = 0;
+
+         foreach ($query_products as $saleDetail) {
+             $total_costos += $saleDetail->costo * $saleDetail->quantity;
+             
+         }
+
+
+        $pdf = PDF::loadView('admin.sale.pdf', compact('subtotal','saleDetails','sale','business', 'serviceDetails','subtotalserv','total_ganancia','total_costos','query_products'));
         return $pdf->download('Reporte_de_venta'.$sale->id.'.pdf');
     }
 

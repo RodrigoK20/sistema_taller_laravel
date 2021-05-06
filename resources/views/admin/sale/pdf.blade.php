@@ -213,18 +213,20 @@
                         <th style="text-align:center">UNIDAD</th>
                         <th style="text-align:center">GANANCIA</th> 
                         <th style="text-align:center">PRECIO VENTA($)</th>
+                        <th style="text-align:center">COSTO</th>
                         <th style="text-align:center">DESCUENTO(%)</th>
                         <th style="text-align:center">SUBTOTAL($)</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($saleDetails as $saleDetail)
+                    @foreach ($query_products as $saleDetail)
                     <tr>
                         <td style="text-align:center"  class="tddetalle">{{$saleDetail->quantity}}</td>
-                        <td style="text-align:center"  class="tddetalle">{{$saleDetail->product->name}}</td>
-                        <td style="text-align:center"  class="tddetalle">{{$saleDetail->product->unit->name}}</td>
+                        <td style="text-align:center"  class="tddetalle">{{$saleDetail->producto}}</td>
+                        <td style="text-align:center"  class="tddetalle">{{$saleDetail->unidad}}</td>
                         <td style="text-align:center" class="tddetalle">${{$saleDetail->gain}}</td>
                         <td style="text-align:center"  class="tddetalle">${{$saleDetail->price}}</td>
+                        <td style="text-align:center"  class="tddetalle">${{$saleDetail->costo}}</td>
                         <td style="text-align:center"  class="tddetalle">%{{$saleDetail->discount}}</td>
                         <td style="text-align:center"  class="tddetalle">${{number_format($saleDetail->quantity*$saleDetail->price - $saleDetail->quantity*$saleDetail->price*$saleDetail->discount/100,2)}}
                         </td>
@@ -234,11 +236,20 @@
                 <tfoot>
 
                  <tr>
-                        <th colspan="6">
+                        <th colspan="7">
                             <p align="right">GANANCIA PRODUCTOS:</p>
                         </th>
                         <td>
                             <p align="right">$ {{number_format($total_ganancia,2)}}</p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th colspan="7">
+                            <p align="right">TOTAL COSTO (DINERO DE INVENTARIO):</p>
+                        </th>
+                        <td>
+                            <p align="right">${{number_format($total_costos,2)}}</p>
                         </td>
                     </tr>
                     
@@ -315,6 +326,9 @@
                         <p align="right">${{number_format($subtotal,2)}}</p>
                     </td>
                 </tr>
+
+                
+          
                
                 <tr>
                     <th colspan="4">

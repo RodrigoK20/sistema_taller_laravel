@@ -73,8 +73,11 @@ class ReportController extends Controller
             //Datos Empresa
             $business = Business::where('id',1)->firstOrFail();
 
-            $query_products  = DB::select('SELECT s.id as sale_id,s.sale_date as fecha_venta,s.total as total, s.tax as tax, sl.quantity, sl.price, sl.discount, sl.gain, p.name as producto, p.sell_price, cl.name as cliente, pd.price as costo FROM sales s JOIN sale_details sl ON sl.sale_id = s.id JOIN products p ON p.id = sl.product_id JOIN purchase_details pd ON pd.product_id = sl.product_id
-            JOIN clients cl ON cl.id = s.client_id WHERE s.status= "VALID" AND s.sale_date BETWEEN :fi AND :ff ', ['fi'=>$fi, 'ff'=>$ff]);
+            $query_products  = DB::select('SELECT s.id as sale_id,s.sale_date as fecha_venta,s.total as total, s.tax as tax, sl.quantity,sl.price, sl.discount, sl.gain, p.name as producto,u.name as unidad, p.sell_price, cl.name as cliente, pd.price as costo FROM sales s JOIN sale_details sl ON sl.sale_id = s.id JOIN products p ON p.id = sl.product_id 
+            JOIN purchase_details pd ON pd.id = p.id JOIN units u ON u.id = p.unit_id
+            JOIN clients cl ON cl.id = s.client_id WHERE s.status= "VALID" AND s.sale_date BETWEEN :fi AND :ff ORDER BY s.id ASC', ['fi'=>$fi, 'ff'=>$ff]);
+
+            //dd($query_products);
 
             //Total ganancia
             $total_ganancia = 0;

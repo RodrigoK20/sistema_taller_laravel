@@ -231,6 +231,7 @@
                          
                          <th style="text-align:center">PRODUCTO</th>
                         <th style="text-align:center">CANTIDAD</th>
+                        <th style="text-align:center">UNIDAD</th>
                         <th style="text-align:center">GANANCIA</th> 
                         <th style="text-align:center">PRECIO VENTA($)</th>
                         <th style="text-align:center">DESCUENTO(%)</th>
@@ -244,6 +245,7 @@
                         <td style="text-align:center"  class="tddetalle">{{$saleDetail->sale_id}}</td>
                         <td style="text-align:center"  class="tddetalle">{{$saleDetail->producto}}</td>
                         <td style="text-align:center"  class="tddetalle">{{$saleDetail->quantity}}</td>
+                        <td style="text-align:center"  class="tddetalle">{{$saleDetail->unidad}}</td>
                         <td style="text-align:center" class="tddetalle">${{$saleDetail->gain}}</td>
                         <td style="text-align:center"  class="tddetalle">${{$saleDetail->price}}</td>
                         <td style="text-align:center"  class="tddetalle">{{$saleDetail->discount}}%</td>
@@ -256,7 +258,7 @@
                 <tfoot>
 
                  <tr>
-                        <th colspan="7">
+                        <th colspan="8">
                             <p align="right">GANANCIA PRODUCTOS:</p>
                         </th>
                         <td>
@@ -266,7 +268,7 @@
 
                     
                  <tr>
-                        <th colspan="7">
+                        <th colspan="8">
                             <p align="right">CANTIDAD PRODUCTOS VENDIDOS:</p>
                         </th>
                         <td> @foreach ($cantidad_venta as $cantidadventa)
@@ -277,7 +279,7 @@
                     </tr>
 
                     <tr>
-                        <th colspan="7">
+                        <th colspan="8">
                             <p align="right">TOTAL COSTO (DINERO DE INVENTARIO):</p>
                         </th>
                         <td>
@@ -287,7 +289,7 @@
 
 
                     <tr>
-                        <th colspan="7">
+                        <th colspan="8">
                             <p align="right">TOTAL VENTA PRODUCTOS:</p>
                         </th>
                         <td>

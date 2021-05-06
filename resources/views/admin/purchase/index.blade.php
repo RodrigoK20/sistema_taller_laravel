@@ -92,11 +92,6 @@
 {!! Form::close() !!}
 
 
-
-
-
-               
-
                     <div class="table-responsive">
                         <table id="order-listing" class="table">
                             <thead>
@@ -118,7 +113,7 @@
 
                                     <td>{{$purchase->num_factura}}</td>
 
-                                    <td>{{$purchase->total}}</td>
+                                    <td>${{$purchase->total}}</td>
 
                                      @if($purchase->status == 'VALID')
 
