@@ -142,7 +142,7 @@
                     </div>
                     <div class="text-value h4"><strong>${{$total->totalservicios}}</strong>
                     </div>
-                    <div class="h3">Total Servicios Taller (Día Actual)</div>
+                    <div class="h3">Total Servicios Taller (Mes Actual)</div>
                 </div>
                 <div class="chart-wrapper mt-3 mx-3" style="height:35px;">
                     <a href="{{route('cars.index')}}" class="small-box-footer h4">Vehículos <i
