@@ -134,7 +134,16 @@ class SaleController extends Controller
          //Datos gastos repuestos
          $gastosDetails = $sale->saleExpenses;
 
-        return view('admin.sale.show', compact('sale','saleDetails','subtotal','serviceDetails','subtotalserv','gastosDetails'));
+         $total_expense = 0;
+
+         foreach ($gastosDetails as $gasto) {
+             $total_expense += $gasto->price * $gasto->quantity;
+
+         }
+
+        // dd($total_expense);
+
+        return view('admin.sale.show', compact('sale','saleDetails','subtotal','serviceDetails','subtotalserv','gastosDetails','total_expense'));
     }
 
     
@@ -225,6 +234,9 @@ class SaleController extends Controller
         //Acceder al detalle de la compras segun RELACION
         $saleDetails = $sale->saleDetails;
 
+        //datos cliente
+        $client = $sale->client;
+
         //Acceder a precio de compra
         //$purchase_product = PurchaseDetails::where('product_id',$saleDetails->product_id)->firstOrFail();
        // dd($purchase_product);
@@ -257,7 +269,7 @@ class SaleController extends Controller
         }
 
         $query_products  = DB::select('SELECT s.id as sale_id,s.sale_date as fecha_venta,s.total as total, s.tax as tax, sl.quantity, sl.price, sl.discount, sl.gain, p.name as producto, p.sell_price, cl.name as cliente, pd.price as costo, u.name as unidad FROM sales s JOIN sale_details sl ON sl.sale_id = s.id JOIN products p ON p.id = sl.product_id 
-        JOIN purchase_details pd ON pd.id = p.id JOIN units u ON u.id = p.unit_id
+        JOIN purchase_details pd ON pd.product_id = p.id JOIN units u ON u.id = p.unit_id
         JOIN clients cl ON cl.id = s.client_id  WHERE s.id= :id ORDER BY s.id ASC ', ['id'=>$sale->id]);
 
          //total costos sumatoria
@@ -269,7 +281,7 @@ class SaleController extends Controller
          }
 
 
-        $pdf = PDF::loadView('admin.sale.pdf', compact('subtotal','saleDetails','sale','business', 'serviceDetails','subtotalserv','total_ganancia','total_costos','query_products'));
+        $pdf = PDF::loadView('admin.sale.pdf', compact('subtotal','saleDetails','sale','business', 'serviceDetails','subtotalserv','total_ganancia','total_costos','query_products','client'));
         return $pdf->download('Reporte_de_venta'.$sale->id.'.pdf');
     }
 

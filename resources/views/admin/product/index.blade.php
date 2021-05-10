@@ -52,6 +52,54 @@
                           </div>
                     
                       </div>
+
+ {!! Form::open(['route'=>'report.products', 'method'=>'POST']) !!}
+
+<div class="row ">
+
+    <div class="col-12 col-md-2">
+        <span>Fecha inicial</span>
+        <div class="form-group">
+            <input class="form-control" type="date" 
+            value="{{old('fecha_ini')}}" 
+            name="fecha_ini" id="fecha_ini" required>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-2 text-center mt-4">
+        <div class="form-group">
+           <button type="submit" id="btn_consultar" name="btn_consultar" value="1" class="btn btn-primary btn-sm">Consultar</button>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-2 text-center mt-4">
+        <div class="form-group">
+           <button type="submit"  class="btn btn-warning btn-sm"> <i class="fas fa-file-pdf"></i> Reporte Inventario</button>
+        </div>
+    </div>
+    
+    <div class="col-12 col-md-2 text-center">
+        <span>Total de productos sin stock: <b> </b></span>
+        <div class="form-group">
+                     @foreach ($cantidad_productos_sin_stock as $producto)
+                           <strong>{{$producto->stock}}</strong>
+                        
+                        @endforeach
+        </div>
+    </div>
+
+    <div class="col-12 col-md-2 text-center">
+        <span>Total unidades de inventario: <b> </b></span>
+        <div class="form-group">
+               @foreach ($cantidad_productos as $prod)
+                           <strong>{{$prod->cantidad}}</strong>
+                        
+                        @endforeach
+        </div>
+    </div>
+
+</div>
+{!! Form::close() !!}
                
 
                     <div class="table-responsive">

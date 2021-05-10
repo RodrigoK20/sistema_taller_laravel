@@ -129,8 +129,8 @@
                 <tr>
                      <th>Eliminar</th>
                     <th>Producto/Servicio</th>
-                    <th>Cantidad</th>
                     <th>Precio</th>
+                    <th>Cantidad</th>
                     <th style="width:1%;">SubTotal(US)</th>
                 </tr>
             </thead>
@@ -281,7 +281,7 @@ service_id1.change(function(){
             total = total + subtotal[cont];
             
         
-            var fila = '<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-danger btn-sm" onclick="eliminar('+cont+');"><i class="fa fa-times"></i></button></td><td> <input type="hidden" id="product[]" name="product[]" value="' + product + '"> <input class="form-control" type="string" id="product[]" value="' + product + '" disabled> </td> <td> <input type="hidden" id="price[]" name="price[]" value="' + price + '"> <input class="form-control" type="number" id="price[]" value="' + price + '" disabled> </td>  <td> <input type="hidden" name="quantity[]" value="' + quantity + '"> <input class="form-control" type="number" value="' + quantity + '" disabled> </td>   <td align="right">s/' + subtotal[cont] + ' </td></tr>';
+            var fila = '<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-danger btn-sm" onclick="eliminar('+cont+');"><i class="fa fa-times"></i></button></td><td> <input type="hidden" id="product[]" name="product[]" value="' + product + '"> <input class="form-control" type="string" id="product[]" value="' + product + '" disabled> </td> <td> <input type="hidden" id="price[]" name="price[]" value="' + price + '"> <input class="form-control" type="number" id="price[]" value="' + parseFloat(price).toFixed(2) + '" disabled> </td>  <td> <input type="hidden" name="quantity[]" value="' + quantity + '"> <input class="form-control" type="number" value="' + quantity + '" disabled> </td>   <td align="right">s/' + parseFloat(subtotal[cont]).toFixed(2) + ' </td></tr>';
             cont++;
             limpiar();
             totales();

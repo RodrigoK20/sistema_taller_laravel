@@ -14,7 +14,7 @@
 
 
                     <div class="form-group">
-                      <label for="name">Nombre Producto/Repuesto</label>
+                      <label for="name">Nombre Producto / Repuesto</label>
                       <input type="text" class="form-control" name="name_product" id="name_product" placeholder="Nombre Producto/Repuesto" >
                     </div>
 
@@ -51,7 +51,7 @@
 
 
 <div class="form-group">
-<button type="button" id="agregar" class="btn btn-primary float-left">Agregar servicio</button>
+<button type="button" id="agregar" class="btn btn-primary float-left">Agregar Repuesto</button>
 
 <br>
 <br>

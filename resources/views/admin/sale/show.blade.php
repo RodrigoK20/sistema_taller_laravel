@@ -166,7 +166,7 @@
                                             <p align="right" style="color:red">TOTAL FACTURA:</p>
                                         </th>
                                         <th>
-                                            <p align="right" style="color:red">${{number_format($sale->total + $sale->total_service_dealer,2)}} </p>
+                                            <p align="right" style="color:red">${{number_format($sale->total + $sale->total_service_dealer +  $total_expense ,2)}} </p>
                                         </th>
                                     </tr> 
 

@@ -88,9 +88,11 @@
                                     @if($sale->status == 'VALID')
 
                                     <td>
+
+                                    <!-- href="{{route('change.status.sales', $sale)}}" -->
                                     
-                                    <a class="btn btn-success" style="" href="{{route('change.status.sales', $sale)}}" title="Cambiar Estado">
-                                            VALID <i class="fas fa-check"></i>
+                                    <a class="btn btn-success" style="" title="Cambiar Estado">
+                                            VÁLIDO <i class="fas fa-check"></i>
                                         </a>
 
                                     </td>

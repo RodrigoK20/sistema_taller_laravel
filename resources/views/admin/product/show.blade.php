@@ -118,6 +118,19 @@
                                         </p>
 
                                         <hr>
+
+                                        <strong>
+                                        @foreach ($query as $price)
+                                            <i class="fas fa-dollar-sign mr-1"></i>
+                                            Precio de compra</strong>
+
+                                            
+                                        <p class="text-muted">
+                                            {{$price->costo}}
+                                        </p>
+                                     @endforeach
+
+                                        <hr>
                                         
                                         {{--  <strong><i class="fas fa-map-marked-alt mr-1"></i> Categoría</strong>
                                         <p class="text-muted">

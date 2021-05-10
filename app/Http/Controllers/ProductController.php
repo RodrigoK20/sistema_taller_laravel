@@ -8,6 +8,8 @@ use App\Provider;
 use App\Purchase;
 use App\PurchaseDetails;
 use App\Unit;
+use App\Business;
+
 use Illuminate\Http\Request;
 use App\Http\Requests\Product\StoreRequest;
 use App\Http\Requests\Product\UpdateRequest;
@@ -39,7 +41,12 @@ class ProductController extends Controller
     {
         //Listado de Productos
         $products = Product::get();
-        return view('admin.product.index', compact('products'));
+
+        $cantidad_productos_sin_stock = DB::select('SELECT COUNT(*) as stock FROM products p WHERE p.status="ACTIVE" AND p.stock=0');
+
+        $cantidad_productos = DB::select('SELECT SUM(p.stock) as cantidad FROM products p WHERE p.status="ACTIVE"');
+
+        return view('admin.product.index', compact('products','cantidad_productos_sin_stock','cantidad_productos'));
     }
 
     public function create()
@@ -103,7 +110,10 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         //Detalle producto
-        return view('admin.product.show', compact('product'));
+
+        $query = DB::select('SELECT pd.price as costo FROM purchase p JOIN purchase_details pd ON pd.purchase_id = p.id JOIN products pr ON pd.product_id = pr.id WHERE pr.id = :id ORDER BY p.purchase_date DESC LIMIT 1', ['id'=>$product->id]);
+
+        return view('admin.product.show', compact('product', 'query'));
     }
 
     
@@ -217,6 +227,41 @@ class ProductController extends Controller
     
         $pdf = PDF::loadView('admin.product.barcode', compact('products'));
         return $pdf->download('Code_products'.'.pdf');
+    }
+
+    //Reporte pdf
+
+    public function report_products(Request $request){
+
+      if($request->btn_consultar==1){
+
+        //Reporte por categoria productos
+
+        $fi = $request->fecha_ini. ' 00:00:00';
+        $ff = $request->fecha_fin. ' 23:59:59';
+        $sales = Sale::whereBetween('sale_date', [$fi, $ff])->where('status','=','VALID')->get();
+        $total = $sales->sum('total');
+        $totaltaller = $sales->sum('total_service_dealer');
+        return view('admin.report.reports_date', compact('sales', 'total','totaltaller')); 
+
+        }
+
+        else{
+            //GENERAR PDF TODOS LOS PRODUCTOS EN INVENTARIO
+
+            $fecha_hora = date_create()->format('Y-m-d H:i:s');
+
+            //Datos Empresa
+            $business = Business::where('id',1)->firstOrFail();
+
+            $query_products  = DB::select('SELECT p.id,p.name as nombre, p.stock as stock, p.sell_price as precio, u.name as unidad, c.name as categoria, pr.name as proveedor, pd.price as costo from products p JOIN categories c ON c.id = p.category_id
+            JOIN units u ON u.id = p.unit_id JOIN providers pr ON pr.id = p.provider_id JOIN purchase_details pd ON pd.product_id = p.id JOIN purchase pur On pur.id = pd.purchase_id GROUP BY p.id ORDER BY p.stock ASC');
+        
+            $cantidad_productos = DB::select('SELECT COUNT(*) as cantidad FROM products p WHERE p.status="ACTIVE"');
+
+            $pdf = PDF::loadView('admin.product.pdf', compact('business','query_products','cantidad_productos','fecha_hora'))->setPaper('a3', 'portrait');
+            return $pdf->download('Reporte_inventario'.'.pdf');
+        }
     }
 
 }

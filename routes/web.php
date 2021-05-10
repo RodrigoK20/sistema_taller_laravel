@@ -50,6 +50,8 @@ Route::post('report/report_results_history','ReportController@report_results_his
 Route::post('report/report_results_expense','ReportController@report_results_expense')->name('report.result2');
 Route::post('report/report_resultspurchase', 'ReportController@report_purchases')->name('report.purchases');
 
+Route::post('report/report_products','ProductController@report_products')->name('report.products');
+
 
 //////////////////////
 
