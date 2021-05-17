@@ -58,23 +58,25 @@
 <div class="row ">
 
     <div class="col-12 col-md-2">
-        <span>Fecha inicial</span>
+        <span>Categoría</span>
         <div class="form-group">
-            <input class="form-control" type="date" 
-            value="{{old('fecha_ini')}}" 
-            name="fecha_ini" id="fecha_ini" required>
+        <select class="form-control" name="category_id" id="category_id">
+                        @foreach ($categories as $category)
+                        <option value="{{$category->id}}">{{$category->name}}</option>
+                        @endforeach
+                      </select>
         </div>
     </div>
 
     <div class="col-12 col-md-2 text-center mt-4">
         <div class="form-group">
-           <button type="submit" id="btn_consultar" name="btn_consultar" value="1" class="btn btn-primary btn-sm">Consultar</button>
+           <button type="submit" id="btn_consultar" name="btn_consultar" value="1" class="btn btn-info btn-sm"> <i class="fas fa-box"></i> <strong>Consultar</strong></button>
         </div>
     </div>
 
     <div class="col-12 col-md-2 text-center mt-4">
         <div class="form-group">
-           <button type="submit"  class="btn btn-warning btn-sm"> <i class="fas fa-file-pdf"></i> Reporte Inventario</button>
+           <button type="submit"  class="btn btn-warning btn-sm"> <i class="fas fa-file-pdf"></i> <strong>Reporte Inventario</strong></button>
         </div>
     </div>
     

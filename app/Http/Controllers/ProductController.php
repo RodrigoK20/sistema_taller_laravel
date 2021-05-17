@@ -46,7 +46,9 @@ class ProductController extends Controller
 
         $cantidad_productos = DB::select('SELECT SUM(p.stock) as cantidad FROM products p WHERE p.status="ACTIVE"');
 
-        return view('admin.product.index', compact('products','cantidad_productos_sin_stock','cantidad_productos'));
+        $categories = Category::get();
+
+        return view('admin.product.index', compact('products','cantidad_productos_sin_stock','cantidad_productos','categories'));
     }
 
     public function create()
@@ -233,29 +235,44 @@ class ProductController extends Controller
 
     public function report_products(Request $request){
 
+      //dd($request->category_id);
+
       if($request->btn_consultar==1){
 
         //Reporte por categoria productos
 
-        $fi = $request->fecha_ini. ' 00:00:00';
-        $ff = $request->fecha_fin. ' 23:59:59';
-        $sales = Sale::whereBetween('sale_date', [$fi, $ff])->where('status','=','VALID')->get();
-        $total = $sales->sum('total');
-        $totaltaller = $sales->sum('total_service_dealer');
-        return view('admin.report.reports_date', compact('sales', 'total','totaltaller')); 
+        $fecha_hora = Carbon::now('America/El_Salvador');
+
+        //Datos Empresa
+        $business = Business::where('id',1)->firstOrFail();
+
+        $query_products  = DB::select('SELECT p.id,p.name as nombre, p.stock as stock, p.sell_price as precio, u.name as unidad, c.name as categoria, pr.name as proveedor FROM products p JOIN categories c ON c.id = p.category_id 
+        JOIN units u ON u.id = p.unit_id JOIN providers pr ON pr.id = p.provider_id WHERE c.id= :category_id GROUP BY p.id ORDER BY p.stock ASC',['category_id'=>$request->category_id]);
+
+        $nombre_cat ="";
+
+        foreach ($query_products as $query) 
+        {
+          $nombre_cat = $query->categoria;
+        }
+    
+        $cantidad_productos = DB::select('SELECT COUNT(*) as cantidad FROM products p JOIN categories c ON c.id= p.category_id  WHERE p.status="ACTIVE" AND c.id=:category_id',['category_id'=>$request->category_id]);
+
+        $pdf = PDF::loadView('admin.product.category_report', compact('business','query_products','cantidad_productos','fecha_hora','nombre_cat'))->setPaper('a3', 'portrait');
+        return $pdf->download('Reporte_inventario_categoria'.'.pdf');
 
         }
 
         else{
             //GENERAR PDF TODOS LOS PRODUCTOS EN INVENTARIO
 
-            $fecha_hora = date_create()->format('Y-m-d H:i:s');
+            $fecha_hora = Carbon::now('America/El_Salvador');
 
             //Datos Empresa
             $business = Business::where('id',1)->firstOrFail();
 
             $query_products  = DB::select('SELECT p.id,p.name as nombre, p.stock as stock, p.sell_price as precio, u.name as unidad, c.name as categoria, pr.name as proveedor, pd.price as costo from products p JOIN categories c ON c.id = p.category_id
-            JOIN units u ON u.id = p.unit_id JOIN providers pr ON pr.id = p.provider_id JOIN purchase_details pd ON pd.product_id = p.id JOIN purchase pur On pur.id = pd.purchase_id GROUP BY p.id ORDER BY p.stock ASC');
+            JOIN units u ON u.id = p.unit_id JOIN providers pr ON pr.id = p.provider_id JOIN purchase_details pd ON pd.product_id = p.id JOIN purchase pur ON pur.id = pd.purchase_id GROUP BY p.id ORDER BY p.stock ASC');
         
             $cantidad_productos = DB::select('SELECT COUNT(*) as cantidad FROM products p WHERE p.status="ACTIVE"');
 
