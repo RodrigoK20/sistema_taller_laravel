@@ -138,7 +138,14 @@
             <!-- Detalle servicio taller -->
 
                     <div class="form-group">
-                        <h4 class="card-title">Detalles de servicio taller</h4>
+                        <h4 class="card-title">Detalles de servicio taller</h4> 
+
+                <a class="nav-link" type="button" data-toggle="modal" data-target="#modal1">
+                    <span class="btn btn-info ml-10">Ver descripción servicio</span>
+                </a>
+
+             <br>
+
                         <div class="table-responsive col-md-12">
                             <table id="saleDetails" class="table">
                                 <thead>
@@ -196,6 +203,36 @@
     </div>
 </div>
 
+
+<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="cambio"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cambio">Servicios Taller</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <label for="name">Descripción servicios realizados</label>
+                    <textarea class="form-control" id="service_description" name="service_description" name rows="4" readonly>{{$sale->service_description}}</textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+</div>
+
 @endsection
 
 
@@ -204,6 +241,7 @@
 <script>
 
 $( document ).ready(function() {
+
 
 
 

@@ -106,7 +106,7 @@ class SaleController extends Controller
  
     public function show(Sale $sale)
     {
-        
+       // dd($sale->service_description);
         //Acceder al detalle de la ventas segun RELACION
         $saleDetails = $sale->saleDetails;
         //dd($saleDetails);
