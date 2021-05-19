@@ -13,7 +13,7 @@
 <div class="form-row">
     <div class="form-group col-md-6">
 
-    <label for="client_id">Cliente</label>
+    <label for="client_id"><strong>Cliente</strong></label>
     <select class="form-control" name="client_id" id="client_id1">
     <option value="" disabled selected>Selecccione un cliente</option>
         @foreach ($clients as $client)
@@ -23,7 +23,7 @@
 </div>
 
 <div class="form-group col-md-6">
-    <label for="client_id">Vehiculo</label>
+    <label for="client_id"><strong>Vehículo</strong></label>
     <select class="form-control" name="car_id" id="car_id1">
        
     </select>
@@ -34,7 +34,7 @@
 <div class="form-row">
     <div class="form-group col-md-6">
 
-    <label for="workshop">Categoria Taller</label>
+    <label for="workshop"><strong>Categoría Taller</strong></label>
               <!-- <select class="form-control selectpicker" data-live-search="true" name="product_id" id="product_id">   -->
              <select class="form-control" name="workshop_id" id="workshop_id1">
                 <option value="" disabled selected>Selecccione una categoria de taller</option>
@@ -47,7 +47,7 @@
 
 <div class="form-group col-md-6">
     
-    <label for="client_id">Servicio</label>
+    <label for="client_id"><strong>Servicio</strong></label>
     <select class="form-control" name="service_id" id="service_id1">
    
     </select>
@@ -61,22 +61,28 @@
  
     <div class="form-group col-md-6">
         <div class="form-group">
-            <label for="">Mano de Obra ($)</label>
+            <label for=""><strong>Mano de Obra ($)</strong></label>
             <input type="text" name="cost" id="cost" value="" class="form-control" disabled>
           </div>
     </div>
     <div class="form-group col-md-6">
         <div class="form-group">
-            <label for="price">Descripción</label>
+            <label for="price"><strong>Descripción</strong></label>
             <textarea type="number" class="form-control" name="" id="description" aria-describedby="helpId" disabled> </textarea>
         </div>
     </div>
   </div>
 
   
+    <div class="form-group">
+        <label for="discount"><strong>Descripción del Servicio realizado</strong></label>
+        <small id="helpId" class="form-text text-muted">Este campo es opcional.</small>
+        <textarea class="form-control" id="service_description" name="service_description" name rows="4"></textarea>
+    </div>
 
-  <div class="form-group">
-        <label for="discount">Fecha de servicio</label>
+
+    <div class="form-group">
+        <label for="discount"><strong>Fecha de servicio</strong></label>
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon2">DÍA-MES-AÑO</span>
@@ -84,6 +90,7 @@
             <input type="date" class="form-control" name="service_date" id="service_date" placeholder="" required >
         </div>
     </div>
+
 
   <!-- Checkbox -->
   <i class="fas fa-dollar-sign fa-3x" ></i> <br><br>

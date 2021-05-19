@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Sale extends Model
 {
     protected $fillable = [
-        'sale_date', 'tax', 'total', 'status' ,'total_service_dealer','total_expense' ,'user_id', 'client_id',
+        'sale_date', 'tax', 'total', 'status' ,'total_service_dealer','total_expense' ,'service_description','user_id', 'client_id',
     ];
 
      //Configuracion relaciones (ONE TO MANY INVERSE - SINGULAR (SEGUN RELACION TABLA))

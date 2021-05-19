@@ -10,7 +10,7 @@
 @endsection
 
 <div class="form-group">
-        <label for="discount">Fecha de venta</label>
+        <label for="discount"><strong>Fecha de venta</strong></label>
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon2">DÍA-MES-AÑO</span>
@@ -20,7 +20,7 @@
     </div>
 
 <div class="form-group">
-    <label for="client_id">Cliente</label>
+    <label for="client_id"><strong>Cliente</strong></label>
     <select class="form-control" name="client_id" id="client_id">
         @foreach ($clients as $client)
         <option value="{{$client->id}}">{{$client->name}}</option>
@@ -30,7 +30,7 @@
 
 
 <div class="form-group">
-  <label for="code">Código de barras</label>
+  <label for="code"><strong>Código de barras</strong></label>
   <input type="text" name="code" id="code" class="form-control" placeholder="" aria-describedby="helpId">
 </div>
 
@@ -38,7 +38,7 @@
 <div class="form-row">
     <div class="form-group col-md-4">
         <div class="form-group">
-            <label for="product_id">Producto</label>
+            <label for="product_id"><strong>Producto</strong></label>
               <!-- <select class="form-control selectpicker" data-live-search="true" name="product_id" id="product_id">   -->
              <select class="form-control" name="product_id" id="product_id1">
                 <option value="" disabled selected>Selecccione un producto</option>
@@ -51,13 +51,13 @@
     </div>
     <div class="form-group col-md-4">
         <div class="form-group">
-            <label for="">Stock actual</label>
+            <label for=""><strong>Stock actual</strong></label>
             <input type="text" name="" id="stock" value="" class="form-control" disabled>
           </div>
     </div>
     <div class="form-group col-md-4">
         <div class="form-group">
-            <label for="price">Precio de venta</label>
+            <label for="price"><strong>Precio de venta</strong></label>
             <input type="number" class="form-control" name="price" id="price" aria-describedby="helpId" disabled>
         </div>
     </div>
@@ -67,12 +67,12 @@
   <div class="form-row">
     <div class="form-group col-md-6">
         <div class="form-group">
-            <label for="quantity">Cantidad</label>
+            <label for="quantity"><strong>Cantidad</strong></label>
             <input type="number" class="form-control" name="quantity" id="quantity" aria-describedby="helpId">
         </div>
     </div>
     <div class="form-group col-md-3">
-        <label for="tax">Impuesto</label>
+        <label for="tax"><strong>Impuesto</strong></label>
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon3">%</span>
@@ -81,7 +81,7 @@
         </div>
     </div>
     <div class="form-group col-md-3">
-        <label for="discount">Porcentaje de descuento</label>
+        <label for="discount"><strong>Porcentaje de descuento</strong></label>
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon2">%</span>
@@ -226,7 +226,7 @@ product_id1.change(function(){
     var valor = $("#product_id1").val();
     var texto = $("#detalles").val();
 
-    if (texto.split("\n").indexOf(valor) < 0 ){
+    //if (texto.split("\n").indexOf(valor) < 0 ){
      $("#detalles").val(texto + valor + "\n");
 
      $.ajax({
@@ -245,14 +245,14 @@ product_id1.change(function(){
      
     });
     
-  }
-  else{
+ // }
+/*   else{
     Swal.fire({
                 type: 'error',
                 text: 'El producto ya se encuentra agregado a la venta!',
             })
 
-  }
+  } */
   
      
 }); 

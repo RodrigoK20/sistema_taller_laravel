@@ -1,7 +1,7 @@
 <div class ="form row">
 
 <div class="form-group col-md-6">
-<label for="client_id">Cliente</label>
+<label for="client_id"><strong>Cliente</strong></label>
     <select class="form-control" name="client_id" id="client_id1">
     <option value="" disabled selected>Selecccione un cliente</option>
         @foreach ($clients as $client)
@@ -11,7 +11,7 @@
 </div>
 
 <div class="form-group col-md-6">
-    <label for="quantity">Vehículo</label>
+    <label for="quantity"><strong>Vehículo</strong></label>
     <select class="form-control" name="car_id" id="car_id1">
        
        </select>
@@ -25,7 +25,7 @@
 <div class ="form row">
 
 <div class="form-group col-md-6">
-    <label for="quantity">Cantidad</label>
+    <label for="quantity"><strong>Cantidad</strong></label>
     <input type="number" name="quantity" id="quantity" class="form-control" aria-describedby="helpId">
 
     @if ($errors->has('quantity'))
@@ -36,7 +36,7 @@
 
 
 <div class="form-group col-md-6">
-        <label for="price">Precio</label>
+        <label for="price"><strong>Precio</strong></label>
         <div class="input-group">
         <div class="input-group-prepend">
              <span class="input-group-text">$</span> 
@@ -51,7 +51,7 @@
 
 <div class="form-group col-md-6">
 
-<label for="product">Producto / Repuesto</label>
+<label for="product"><strong>Producto / Repuesto </strong></label>
         <div class="input-group">
                     
     <input type="text" name="product" id="product" class="form-control"  aria-describedby="helpId"  >             
@@ -66,7 +66,7 @@
 </div>
 
 <div class="form-group col-md-6">
-<label for="price">Fecha Cotización</label>
+<label for="price"><strong>Fecha Cotización</strong></label>
         <div class="input-group">
                     
         <input type="date" class="form-control" name="date" id="date" placeholder="" required >
@@ -83,7 +83,7 @@
 
 <div class="form-group col-md-6">
 
-<label for="workshop">Categoria Taller</label>
+<label for="workshop"><strong>Categoria Taller</strong></label>
               <!-- <select class="form-control selectpicker" data-live-search="true" name="product_id" id="product_id">   -->
              <select class="form-control" name="category_id" id="category_id1">
                 <option value="" disabled selected>Selecccione una categoria de taller</option>
@@ -97,14 +97,11 @@
 </div>
 
 <div class="form-group col-md-6">
-    <label for="client_id">Servicio</label>
+    <label for="client_id"><strong>Servicio</strong></label>
     <select class="form-control" name="service_id" id="service_id1">
    
     </select>
 </div>
-
-
-
 
 
 

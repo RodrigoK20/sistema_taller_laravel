@@ -87,11 +87,12 @@ class ServiceController extends Controller
        } 
 
       // dd($service);
-       //Actualizando Precio del servicio a la factura (tabla Sale campo total_service_dealer)
+       //Actualizando Precio del servicio a la factura y descripcion (tabla Sale campo total_service_dealer)
        $time_update = Carbon::now('America/El_Salvador');
        $total_service = $request->total;
        $data = Sale::find($id_sale);
        $data->total_service_dealer = $total_service;
+       $data->service_description = $request->service_description;
        $data->updated_at = $time_update;
        $data->save();
 

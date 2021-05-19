@@ -210,6 +210,7 @@ class SaleController extends Controller
        $total_service = $request->total;
        $data = Sale::find($id_sale);
        $data->total_service_dealer = $total_service;
+       $data->service_description = $request->service_description;
        $data->updated_at = $time_update;
        $data->save();
 

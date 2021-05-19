@@ -61,6 +61,16 @@
             <textarea type="number" class="form-control" name="" id="description" aria-describedby="helpId" disabled> </textarea>
         </div>
     </div>
+
+
+    <div class="form-group col-md-12">
+        <div class="form-group">
+        <label for="discount"><strong>Descripción del Servicio realizado</strong></label>
+        <small id="helpId" class="form-text text-muted">Este campo es opcional.</small>
+        <textarea class="form-control" id="service_description" name="service_description" name rows="4"></textarea>
+        </div>
+    </div>
+
   </div>
 
   <!-- Checkbox -->
