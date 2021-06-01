@@ -236,6 +236,7 @@
                         <th style="text-align:center">PRECIO VENTA($)</th>
                         <th style="text-align:center">DESCUENTO(%)</th>
                         <th style="text-align:center">COSTOS</th>
+                        <th style="text-align:center">FECHA</th>
                         <th style="text-align:center">SUBTOTAL($)</th>
                     </tr>
                 </thead>
@@ -250,6 +251,7 @@
                         <td style="text-align:center"  class="tddetalle">${{$saleDetail->price}}</td>
                         <td style="text-align:center"  class="tddetalle">{{$saleDetail->discount}}%</td>
                         <td style="text-align:center"  class="tddetalle">${{number_format($saleDetail->costo * $saleDetail->quantity,2)}} </td>
+                        <td style="text-align:center"  class="tddetalle"> {{\Carbon\Carbon::parse($saleDetail->fecha_venta)->format('d M Y ')}} </td>
                         <td style="text-align:center"  class="tddetalle">${{number_format($saleDetail->quantity*$saleDetail->price - $saleDetail->quantity*$saleDetail->price*$saleDetail->discount/100,2)}}
                         </td>
                     </tr>
@@ -258,7 +260,7 @@
                 <tfoot>
 
                  <tr>
-                        <th colspan="8">
+                        <th colspan="9">
                             <p align="right">GANANCIA PRODUCTOS:</p>
                         </th>
                         <td>
@@ -268,7 +270,7 @@
 
                     
                  <tr>
-                        <th colspan="8">
+                        <th colspan="9">
                             <p align="right">CANTIDAD PRODUCTOS VENDIDOS:</p>
                         </th>
                         <td> @foreach ($cantidad_venta as $cantidadventa)
@@ -279,7 +281,7 @@
                     </tr>
 
                     <tr>
-                        <th colspan="8">
+                        <th colspan="9">
                             <p align="right">TOTAL COSTO (DINERO DE INVENTARIO):</p>
                         </th>
                         <td>
@@ -289,7 +291,7 @@
 
 
                     <tr>
-                        <th colspan="8">
+                        <th colspan="9">
                             <p align="right">TOTAL VENTA PRODUCTOS:</p>
                         </th>
                         <td>
@@ -335,7 +337,7 @@
                       <td style="text-align:center"  class="tddetalle">{{$serviceDetail->cliente}}</td>
                       <td style="text-align:center"  class="tddetalle">{{$serviceDetail->servicio}}</td>
                      <td style="text-align:center"  class="tddetalle">${{$serviceDetail->total_service}}</td>
-                     <td style="text-align:center"  class="tddetalle">{{$serviceDetail->service_date}}</td>
+                     <td style="text-align:center"  class="tddetalle">{{\Carbon\Carbon::parse($serviceDetail->service_date)->format('d M Y ')}} </td>
                      </td>
                     </tr>
              @endforeach
