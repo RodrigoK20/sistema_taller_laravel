@@ -20,6 +20,7 @@ class CreateSaleDetailsTable extends Migration
             $table->decimal('price');
             $table->decimal('discount');
             $table->decimal('gain');
+            $table->decimal('last_cost_price');
             
             //FK SALE
             $table->unsignedBigInteger('sale_id');

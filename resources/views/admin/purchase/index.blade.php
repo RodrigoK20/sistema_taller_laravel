@@ -101,7 +101,7 @@
                                     <th># Factura</th>
                                     <th>Total</th>
                                     <th>Estado</th>
-                                    <th style="width:0%">Acciones</th>
+                                    <th style="width:15%">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -186,7 +186,7 @@
 
 
 @section('scripts')
-{!! Html::script('melody/js/data-table.js') !!}
+{!! Html::script('melody/js/data-table2.js') !!}
 {!! Html::script('melody/js/sweetalert2.js') !!}
 {!! Html::script('select/dist/js/bootstrap-select.min.js') !!}
 

@@ -63,7 +63,7 @@
                         <div class="col-12 col-md-2 text-center">
                             <span>Total de ingresos productos: <b> </b></span>
                             <div class="form-group">
-                                <strong>s/ {{$total}}</strong>
+                                <strong>$ {{$total}}</strong>
                             </div>
                         </div>
 
@@ -85,7 +85,7 @@
                                     <th>Fecha</th>
                                     <th>Total</th>
                                     <th>Estado</th>
-                                    <th style="width:50px;">Acciones</th>
+                                    <th style="width:25px;">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -127,7 +127,7 @@
 @endsection
 
 @section('scripts')
-{!! Html::script('melody/js/data-table.js') !!}
+{!! Html::script('melody/js/data-table2.js') !!}
 @endsection
 
 

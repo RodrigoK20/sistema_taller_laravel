@@ -4,6 +4,8 @@
     .icon_edit3 {
         padding-top: 8px;
     }
+
+    
 </style>
 
 @section('title','Cotización Taller') @section('content')
@@ -138,5 +140,5 @@
                                     @endsection
 
 @section('scripts')
-{!! Html::script('melody/js/data-table.js') !!}
+{!! Html::script('melody/js/data-table2.js') !!}
 @endsection

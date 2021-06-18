@@ -157,7 +157,7 @@
 </script>
 
 @section('scripts')
-{!! Html::script('melody/js/data-table.js') !!}
+{!! Html::script('melody/js/data-table2.js') !!}
 @endsection
 
 

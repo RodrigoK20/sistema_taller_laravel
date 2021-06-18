@@ -65,7 +65,7 @@
                                     <th>Costo</th>
                                     <th>Categoria</th>
                                     <th>Estado</th>
-                                    <th>Acciones</th>
+                                    <th style="width:10%">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -133,7 +133,7 @@
 @endsection
 
 @section('scripts')
-{!! Html::script('melody/js/data-table.js') !!}
+{!! Html::script('melody/js/data-table2.js') !!}
 @endsection
 
 

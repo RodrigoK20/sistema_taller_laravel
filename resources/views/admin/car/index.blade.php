@@ -64,7 +64,7 @@
                                     <th>Placa</th>
                                     <th>Cliente</th>
                                     <th>Estado</th>
-                                    <th>Acciones</th>
+                                    <th style="width:10%">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>

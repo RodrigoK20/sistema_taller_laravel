@@ -226,7 +226,7 @@
                         <td style="text-align:center"  class="tddetalle">{{$saleDetail->unidad}}</td>
                         <td style="text-align:center" class="tddetalle">${{$saleDetail->gain}}</td>
                         <td style="text-align:center"  class="tddetalle">${{$saleDetail->price}}</td>
-                        <td style="text-align:center"  class="tddetalle">${{$saleDetail->costo}}</td>
+                        <td style="text-align:center"  class="tddetalle">${{number_format($saleDetail->costo * $saleDetail->quantity,2)}}</td>
                         <td style="text-align:center"  class="tddetalle">%{{$saleDetail->discount}}</td>
                         <td style="text-align:center"  class="tddetalle">${{number_format($saleDetail->quantity*$saleDetail->price - $saleDetail->quantity*$saleDetail->price*$saleDetail->discount/100,2)}}
                         </td>

@@ -107,7 +107,7 @@
 
  <input id="checkbox_value" name="checkbox_value" type="hidden" value="">
 
- <input id="last_purchase_price" name="last_purchase_price" type="hidden" step="0.01" value="">
+ <input id="last_purchase_price" name="last_purchase_price" type="text" step="0.01" value="">
 
  <br>
 
@@ -139,12 +139,13 @@
                     <th >Descuento</th>
                     <th>Cantidad</th>
                     <th>Ganancia</th>
-                    <th style="width:5%;">SubTotal(US)</th>
+                    <th>Precio Costo</th>
+                    <th style="width:1%;">SubTotal(US)</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
-                    <th colspan="6">
+                    <th colspan="7">
                         <p align="right" >TOTAL:</p>
                     </th>
                     <th>
@@ -152,7 +153,7 @@
                     </th>
                 </tr>
                 <tr>
-                    <th colspan="6">
+                    <th colspan="7">
                         <p align="right">TOTAL IMPUESTO (13%):</p>
                     </th>
                     <th>
@@ -160,7 +161,7 @@
                     </th>
                 </tr>
                 <tr>
-                    <th colspan="6">
+                    <th colspan="7">
                         <p align="right">TOTAL PAGAR:</p>
                     </th>
                     <th>
@@ -310,7 +311,7 @@ function agregar() {
         if (parseInt(stock) >= parseInt(quantity)) {
             subtotal[cont] = (quantity * price) - (quantity * price * discount / 100);
             total = total + subtotal[cont];
-            var fila = '<tr class="selected" id="fila' + cont + '"><td><button type="button" class="btn btn-danger btn-sm" onclick="eliminar(' + cont + ');"><i class="fa fa-times fa-2x"></i></button></td> <td><input type="hidden" id="prod" name="product_id[]" value="' + product_id + '">' + producto + '</td> <td> <input type="hidden" name="price[]" value="' + parseFloat(price).toFixed(2) + '"> <input class="form-control" type="number" value="' + parseFloat(price).toFixed(2) + '" disabled> </td> <td> <input type="hidden" name="discount[]" value="' + parseFloat(discount) + '"> <input class="form-control" type="number" value="' + parseFloat(discount) + '" disabled> </td> <td> <input type="hidden" name="quantity[]" value="' + quantity + '"> <input type="number" value="' + quantity + '" class="form-control" disabled> </td> <td> <input type="hidden" name="gain[]" value="' + gain + '"> <input type="number" value="' + parseFloat(gain).toFixed(2) + '" class="form-control" disabled> </td> <td align="right">s/' + parseFloat(subtotal[cont]).toFixed(2) + '</td></tr>';
+            var fila = '<tr class="selected" id="fila' + cont + '"><td><button type="button" class="btn btn-danger btn-sm" onclick="eliminar(' + cont + ');"><i class="fa fa-times fa-2x"></i></button></td> <td><input type="hidden" id="prod" name="product_id[]" value="' + product_id + '">' + producto + '</td> <td> <input type="hidden" name="price[]" value="' + parseFloat(price).toFixed(2) + '"> <input class="form-control" type="number" value="' + parseFloat(price).toFixed(2) + '" disabled> </td> <td> <input type="hidden" name="discount[]" value="' + parseFloat(discount) + '"> <input class="form-control" type="number" value="' + parseFloat(discount) + '" disabled> </td> <td> <input type="hidden" name="quantity[]" value="' + quantity + '"> <input type="number" value="' + quantity + '" class="form-control" disabled> </td> <td> <input type="hidden" name="gain[]" value="' + gain + '"> <input type="number" value="' + parseFloat(gain).toFixed(2) + '" class="form-control" disabled> </td><td> <input type="hidden" name="last_price[]" value="' + last_price + '"> <input type="number" value="' + parseFloat(last_price).toFixed(2) + '" class="form-control" disabled><td> </td> <td align="right">$' + parseFloat(subtotal[cont]).toFixed(2) + '</td></tr>';
             cont++;
             limpiar();
             totales();

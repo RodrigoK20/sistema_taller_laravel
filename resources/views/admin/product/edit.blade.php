@@ -122,6 +122,9 @@
                      @endif
               </div>
 
+        
+
+
 
               <div class="form-group col-md-6">
 
@@ -147,8 +150,27 @@
                      @endif
               </div>
 
-            </div>
-              
+              <div class="form-group col-md-6">
+
+<div class="form-group">
+    <label for="sell_price">Stock Actual</label>
+    <input type="number" name="stock" id="stock" step="1" min="0" max="9999" class="form-control" aria-describedby="helpId" required value="{{$product->stock}}" disabled>
+</div>
+
+
+<div class="form-check form-check-success">
+    <strong><label class="form-check-label">
+        <input type="checkbox" id="checkbox" class="form-check-input" onclick="validate_checkbox();">
+        Nivelar Stock Inventario
+        </label></strong> 
+ </div>
+
+
+</div>
+ 
+
+</div>
+            
 
 
                      <div class="card-body">
@@ -182,6 +204,23 @@
 
 @section('scripts')
 {!! Html::script('melody/js/dropify.js') !!}
+
+<script>
+
+function validate_checkbox(){
+    if(document.getElementById('checkbox').checked){
+
+        document.getElementById("stock").removeAttribute("disabled");
+
+    }
+
+    else{
+        document.getElementById("stock").setAttribute("disabled",true);
+    }
+}
+
+</script>
+
 @endsection
 
 

@@ -79,7 +79,7 @@ class SaleController extends Controller
         //Detalle VENTA
         foreach($request->product_id as $key =>$product){
             $results[] = array("product_id"=>$request->product_id[$key], "quantity"=>$request->quantity[$key],
-            "price"=>$request->price[$key],"discount"=>$request->discount[$key], "gain"=>$request->gain[$key]);
+            "price"=>$request->price[$key],"discount"=>$request->discount[$key], "gain"=>$request->gain[$key],"last_cost_price"=>$request->last_price[$key]);
 
         }
                 //Nombre relacion puesto en el modelo
@@ -269,16 +269,18 @@ class SaleController extends Controller
            // dd($subtotalserv);
         }
 
-        $query_products  = DB::select('SELECT s.id as sale_id,s.sale_date as fecha_venta,s.total as total, s.tax as tax, sl.quantity, sl.price, sl.discount, sl.gain, p.name as producto, p.sell_price, cl.name as cliente, pd.price as costo, u.name as unidad FROM sales s JOIN sale_details sl ON sl.sale_id = s.id JOIN products p ON p.id = sl.product_id 
+        $query_products  = DB::select('SELECT s.id as sale_id,s.sale_date as fecha_venta,s.total as total, s.tax as tax, sl.quantity, sl.price, sl.discount, sl.gain, p.name as producto, p.sell_price, cl.name as cliente, sl.last_cost_price as costo, u.name as unidad FROM sales s JOIN sale_details sl ON sl.sale_id = s.id JOIN products p ON p.id = sl.product_id 
         JOIN purchase_details pd ON pd.product_id = p.id JOIN units u ON u.id = p.unit_id
-        JOIN clients cl ON cl.id = s.client_id  WHERE s.id= :id ORDER BY s.id ASC ', ['id'=>$sale->id]);
+        JOIN clients cl ON cl.id = s.client_id  WHERE s.id= :id GROUP BY s.id, p.id ORDER BY s.id ASC ', ['id'=>$sale->id]);
 
+    
          //total costos sumatoria
          $total_costos = 0;
+         $name;
 
          foreach ($query_products as $saleDetail) {
              $total_costos += $saleDetail->costo * $saleDetail->quantity;
-             
+
          }
 
 
