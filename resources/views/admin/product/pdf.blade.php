@@ -194,6 +194,7 @@
                         <th style="text-align:center">PRECIO VENTA($)</th>
                         <th style="text-align:center">PROVEEDOR</th>
                         <th style="text-align:center">COSTO</th>
+                        <th style="text-align:center">DI</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -206,6 +207,7 @@
                         <td style="text-align:center"  class="tddetalle">${{$product->precio}}</td>
                         <td style="text-align:center"  class="tddetalle">{{$product->proveedor}}</td>
                         <td style="text-align:center"  class="tddetalle">${{$product->costo}}</td>
+                        <td style="text-align:center"  class="tddetalle">${{$product->dinero_inv}}</td>
                         </td>
                     </tr>
                     @endforeach
@@ -213,7 +215,7 @@
                 <tfoot>
 
                  <tr>
-                        <th colspan="6">
+                        <th colspan="7">
                             <p align="right">CANTIDAD DE PRODUCTOS EN INVENTARIO:</p>
                         </th>
                         <td>
@@ -222,6 +224,19 @@
                         </td>
                         @endforeach
                     </tr>
+
+         
+                    <tr>
+                        <th colspan="7">
+                            <p align="right"> TOTAL DINERO EN INVENTARIO:</p>
+                        </th>
+                        <td>
+                   
+                            <p align="right">${{$total_di}}</p>
+                        </td>
+                   
+                    </tr>
+                  
                   
                 </tfoot>
             </table>

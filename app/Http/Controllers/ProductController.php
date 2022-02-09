@@ -271,12 +271,21 @@ class ProductController extends Controller
             //Datos Empresa
             $business = Business::where('id',1)->firstOrFail();
 
-            $query_products  = DB::select('SELECT p.id,p.name as nombre, p.stock as stock, p.sell_price as precio, u.name as unidad, c.name as categoria, pr.name as proveedor, pd.price as costo from products p JOIN categories c ON c.id = p.category_id
+            $query_products  = DB::select('SELECT pd.price * p.stock as dinero_inv, p.id,p.name as nombre, p.stock as stock, p.sell_price as precio, u.name as unidad, c.name as categoria, pr.name as proveedor, pd.price as costo from products p JOIN categories c ON c.id = p.category_id
             JOIN units u ON u.id = p.unit_id JOIN providers pr ON pr.id = p.provider_id JOIN purchase_details pd ON pd.product_id = p.id JOIN purchase pur ON pur.id = pd.purchase_id GROUP BY p.id ORDER BY p.stock ASC');
         
             $cantidad_productos = DB::select('SELECT COUNT(*) as cantidad FROM products p WHERE p.status="ACTIVE"');
 
-            $pdf = PDF::loadView('admin.product.pdf', compact('business','query_products','cantidad_productos','fecha_hora'))->setPaper('a3', 'portrait');
+            //Dinero de productos de inventario (Sumatoria)
+            
+            $total_di = 0;
+            foreach ($query_products as $consulta) {
+              $total_di += $consulta->dinero_inv;
+             
+            }
+           // dd($total_di);
+           
+            $pdf = PDF::loadView('admin.product.pdf', compact('business','query_products','cantidad_productos','fecha_hora', 'total_di'))->setPaper('a3', 'portrait');
             return $pdf->download('Reporte_inventario'.'.pdf');
         }
     }
