@@ -28,7 +28,7 @@ Route::resource('units', 'UnitController')->names('units');
 Route::resource('clients', 'ClientController')->names('clients');
 Route::resource('cars', 'CarController')->names('cars');
 Route::resource('categorywork','CategoryWorkController')->names('categorieswork');
-Route::resource('workshop','WorkShopController')->names('workshops');
+Route::resource('workshop','WorkshopController')->names('workshops');
 Route::resource('products', 'ProductController')->names('products');
 Route::resource('providers', 'ProviderController')->names('providers');
 Route::resource('cotizacions', 'CotizacionController')->names('cotizacions');

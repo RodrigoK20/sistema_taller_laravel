@@ -34,7 +34,7 @@ class HomeController extends Controller
         $ventasmes = DB::select('SELECT monthname(v.sale_date) as mes, SUM(v.total + v.total_service_dealer) as totalmes FROM sales v WHERE v.status = "VALID" GROUP BY monthname(v.sale_date) ORDER BY month(v.sale_date) desc limit 12');
 
         $ventasdia = DB::select('SELECT DATE_FORMAT(v.sale_date, "%d/%m/%Y") as dia, SUM(v.total + v.total_service_dealer) as totaldia FROM sales v
-        WHERE v.status="VALID" AND  V.sale_date>= DATE_ADD(CURDATE(), INTERVAL -10 DAY) GROUP BY v.sale_date ORDER BY day(v.sale_date) DESC LIMIT 10');
+        WHERE v.status="VALID" AND  v.sale_date>= DATE_ADD(CURDATE(), INTERVAL -10 DAY) GROUP BY v.sale_date ORDER BY day(v.sale_date) DESC LIMIT 10');
 
         $totales = DB::select('SELECT (SELECT ifnull(sum(c.total),0) FROM purchase c WHERE MONTH(c.purchase_date) = EXTRACT(MONTH FROM CURRENT_TIMESTAMP) AND c.status="VALID") as totalcompra, 
         (SELECT ifnull(sum(sd.gain),0) FROM sale_details sd JOIN sales s ON s.id = sd.sale_id WHERE MONTH(s.sale_date)=EXTRACT(MONTH FROM CURRENT_TIMESTAMP) AND s.status="VALID") as totalgananciaprod');
