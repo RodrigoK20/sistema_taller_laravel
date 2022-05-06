@@ -157,7 +157,7 @@ class ReportController extends Controller
 
             $query_purchases  = DB::select('SELECT p.purchase_date, p.total as total, p.status, pd.comission as comission, pd.price as price_purchase, pd.quantity as quantity, pro.name as product, pro.sell_price, prov.name as proveedor FROM purchase p INNER JOIN purchase_details pd ON p.id = pd.purchase_id 
             INNER JOIN products pro ON pro.id = pd.product_id INNER JOIN providers prov ON prov.id = p.provider_id
-            WHERE p.status= "VALID" AND p.purchase_date BETWEEN :fi AND :ff ', ['fi'=>$fi, 'ff'=>$ff]);
+            WHERE p.status= "VALID" AND p.purchase_date BETWEEN :fi AND :ff GROUP BY p.id', ['fi'=>$fi, 'ff'=>$ff]);
 
             //Total comision generada
             $total_comision = 0;
