@@ -28,10 +28,10 @@ class HomeController extends Controller
 
         $cantidadautos= DB::select('SELECT COUNT(*) AS numautos FROM cars c ');
 
-        $comprasmes = DB::select('SELECT monthname(c.purchase_date) as mes, SUM(c.total) as totalmes FROM purchase c WHERE
-        c.status = "VALID" GROUP BY monthname(c.purchase_date) ORDER BY month(c.purchase_date) desc limit 12');
+        $comprasmes = DB::select('SELECT monthname(c.purchase_date) as mes, SUM(c.total) as totalmes FROM purchase c
+        WHERE MONTH(c.purchase_date)=EXTRACT(MONTH FROM c.purchase_date) AND YEAR(c.purchase_date) = YEAR(CURRENT_DATE()) AND  c.status = "VALID" GROUP BY monthname(c.purchase_date) ORDER BY month(c.purchase_date) ASC limit 12;');
 
-        $ventasmes = DB::select('SELECT monthname(v.sale_date) as mes, SUM(v.total + v.total_service_dealer) as totalmes FROM sales v WHERE v.status = "VALID" GROUP BY monthname(v.sale_date) ORDER BY month(v.sale_date) desc limit 12');
+        $ventasmes = DB::select('SELECT monthname(v.sale_date) as mes, SUM(v.total + v.total_service_dealer) as totalmes FROM sales v WHERE MONTH(v.sale_date)=EXTRACT(MONTH FROM v.sale_date) AND YEAR(v.sale_date) = YEAR(CURRENT_DATE()) AND v.status = "VALID" GROUP BY monthname(v.sale_date) ORDER BY month(v.sale_date) asc limit 12;');
 
         $ventasdia = DB::select('SELECT DATE_FORMAT(v.sale_date, "%d/%m/%Y") as dia, SUM(v.total + v.total_service_dealer) as totaldia FROM sales v
         WHERE v.status="VALID" AND  v.sale_date>= DATE_ADD(CURDATE(), INTERVAL -10 DAY) GROUP BY v.sale_date ORDER BY day(v.sale_date) DESC LIMIT 10');
@@ -39,7 +39,7 @@ class HomeController extends Controller
         $totales = DB::select('SELECT (SELECT ifnull(sum(c.total),0) FROM purchase c WHERE MONTH(c.purchase_date) = EXTRACT(MONTH FROM CURRENT_TIMESTAMP) AND YEAR(c.purchase_date) = YEAR(CURRENT_DATE())  AND c.status="VALID") as totalcompra, 
         (SELECT ifnull(sum(sd.gain),0) FROM sale_details sd JOIN sales s ON s.id = sd.sale_id WHERE MONTH(s.sale_date)=EXTRACT(MONTH FROM CURRENT_TIMESTAMP) AND YEAR(s.sale_date) = YEAR(CURRENT_DATE()) AND s.status="VALID") as totalgananciaprod;');
 
-        $tallertotales = DB::select("SELECT (SELECT ifnull(sum(s.total_service),0) FROM services s JOIN sales sl ON sl.id = s.sale_id WHERE MONTH(s.service_date) = EXTRACT(MONTH FROM CURRENT_TIMESTAMP) AND YEAR(s.service_date) = YEAR(CURRENT_DATE()) AND sl.status='VALID') as totalservicios, 
+        $tallertotales = DB::select("SELECT (SELECT SUM(v.total + v.total_service_dealer) FROM sales v WHERE MONTH(CURRENT_DATE())=EXTRACT(MONTH FROM v.sale_date) AND YEAR(v.sale_date) = YEAR(CURRENT_DATE()) AND  v.status='VALID') as totalservicios, 
         (SELECT ifnull(sum(ex.mount),0) FROM expense_shops ex WHERE MONTH(ex.date_registry) = EXTRACT(MONTH FROM CURRENT_TIMESTAMP) AND YEAR(ex.date_registry) = YEAR(CURRENT_DATE()))  as gastos_taller;");
 
         $totalrepuestosxdia = DB::select("SELECT SUM(e.price * e.quantity) as totalr FROM expenses e WHERE e.date_registry = CURRENT_DATE()");
