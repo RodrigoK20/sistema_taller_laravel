@@ -370,7 +370,7 @@
                     setlocale(LC_TIME, 'es_ES', 'Spanish_Spain', 'Spanish'); 
                     $mes_traducido=strftime('%B',strtotime($reg->mes));
             
-                    echo '"'. $mes_traducido.'",';} ?>],
+                    echo '"'. $reg->mes.'",';} ?>],
                     datasets: [{
                         label: 'Compras',
                         data: [<?php foreach ($comprasmes as $reg)
@@ -399,7 +399,7 @@
                     setlocale(LC_TIME, 'es_ES', 'Spanish_Spain', 'Spanish'); 
                     $mes_traducido=strftime('%B',strtotime($reg->mes));
                     
-                    echo '"'. $mes_traducido.'",';} ?>],
+                    echo '"'. $reg->mes.'",';} ?>],
                     datasets: [{
                         label: 'Ventas',
                         data: [<?php foreach ($ventasmes as $reg)
